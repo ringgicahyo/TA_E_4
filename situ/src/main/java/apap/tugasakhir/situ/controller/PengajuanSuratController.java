@@ -1,0 +1,30 @@
+package apap.tugasakhir.situ.controller;
+
+import apap.tugasakhir.situ.model.PengajuanSuratModel;
+import apap.tugasakhir.situ.service.PengajuanSuratService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
+
+@Controller
+public class PengajuanSuratController {
+    @Autowired
+    private PengajuanSuratService pengajuanSuratService;
+
+    //URL daftar pengajuan surat atau beranda
+    @RequestMapping(value="/daftar-pengajuan-surat", method = RequestMethod.GET)
+    public String home(Model model) {
+        //Membuat list yang menampung objek semua pasien yang ada pada database
+        List<PengajuanSuratModel> listPengajuan = pengajuanSuratService.getListPengajuanSurat();
+
+        model.addAttribute("listPengajuan", listPengajuan);
+        model.addAttribute("title", "Daftar Pengajuan Surat");
+        return "daftar-pengajuan-surat";
+    }
+
+
+}
