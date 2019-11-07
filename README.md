@@ -14,7 +14,7 @@ https://github.com/ringgicahyo/TA_E_4
 **Kontrak Tahap 1 Tugas Akhir**
 <br/>
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
-| --- | ------------ | --------------------- |
+| ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 12 |
 | 1706043885 | Muhammad Al-Kautsar Maktub | 4 |
 | 1706043802 | Sandika Prangga Putra | 2, 3 |
@@ -23,7 +23,7 @@ https://github.com/ringgicahyo/TA_E_4
 **Kontrak Tahap 2 Tugas Akhir**
 <br/>
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
-| --- | ------------ | --------------------- |
+| ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 16 |
 | 1706043885 | Muhammad Al-Kautsar Maktub | 15 |
 | 1706043802 | Sandika Prangga Putra | 2, 3, 17 |
@@ -32,12 +32,9 @@ https://github.com/ringgicahyo/TA_E_4
 **Kontrak Tahap 3 Tugas Akhir**
 <br/>
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
-| --- | ------------ | --------------------- |
+| ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 13 |
 | 1706043885 | Muhammad Al-Kautsar Maktub | 5, 10, 11 |
 | 1706043802 | Sandika Prangga Putra | 1 |
 | 1706026821 | Mila Shania | 8, 9 |
 
-| Timestamp | URL | User Agent | IP Address | Language | Hit Count |
-| ----------| --- | ---------- | ---------- | -------- | --------- |
-| 1436570536950 | github.com/dwyl/the-book | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) | 84.91.136.21 | EN-GB | 42 |
