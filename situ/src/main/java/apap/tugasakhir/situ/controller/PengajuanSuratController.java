@@ -7,6 +7,7 @@ import apap.tugasakhir.situ.service.PengajuanSuratService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -45,6 +46,21 @@ public class PengajuanSuratController {
         model.addAttribute("title", "Menambah Pengajuan");
 
         return "form-add-pasien";
+    }
+
+    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
+    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
+    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
+                                   Model model) {
+        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
+
+        model.addAttribute("title", "Delete Diagnosis Penyakit");
+
+        //Cek apakah berhasil dihapus atau tidak
+        if(hasilHapus.equals("delete")){
+            return "delete-diagnosis-penyakit";
+        }
+        return "delete-fail";
     }
 
 }
