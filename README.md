@@ -11,6 +11,7 @@ https://github.com/ringgicahyo/TA_E_4
 3. **Sandika Prangga Putra** - *1706043802*
 4. **Mila Shania** - *1706026821*
 
+### Kontrak Tahap 1 Tugas Akhir
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
 | ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 12 |
@@ -18,6 +19,7 @@ https://github.com/ringgicahyo/TA_E_4
 | 1706043802 | Sandika Prangga Putra | 2, 3 |
 | 1706026821 | Mila Shania | 7 |
 
+### Kontrak Tahap 2 Tugas Akhir
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
 | ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 16 |
@@ -25,6 +27,7 @@ https://github.com/ringgicahyo/TA_E_4
 | 1706043802 | Sandika Prangga Putra | 2, 3, 17 |
 | 1706026821 | Mila Shania | 6, 14 |
 
+### Kontrak Tahap 3 Tugas Akhir
 | NPM | Nama Lengkap | Fitur yang dikerjakan |
 | ----| ------------ | --------------------- |
 | 1706025005 | Ringgi Cahyo Dwiputra | 13 |
