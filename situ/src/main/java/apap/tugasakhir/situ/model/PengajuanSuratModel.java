@@ -54,7 +54,6 @@ public class PengajuanSuratModel {
     @JsonIgnore
     private JenisSuratModel jenisSurat;
 
-
     public PengajuanSuratModel() {
     }
 

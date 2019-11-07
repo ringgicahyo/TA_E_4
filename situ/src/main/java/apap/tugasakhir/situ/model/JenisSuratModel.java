@@ -1,6 +1,7 @@
 package apap.tugasakhir.situ.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -9,6 +10,10 @@ public class JenisSuratModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotNull
+    @Column(name="nama", nullable = false)
+    private String nama;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<PengajuanSuratModel> listPengajuanSurat;

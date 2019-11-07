@@ -1,6 +1,8 @@
 package apap.tugasakhir.situ.controller;
 
+import apap.tugasakhir.situ.model.JenisSuratModel;
 import apap.tugasakhir.situ.model.PengajuanSuratModel;
+import apap.tugasakhir.situ.service.JenisSuratService;
 import apap.tugasakhir.situ.service.PengajuanSuratService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import java.util.List;
 public class PengajuanSuratController {
     @Autowired
     private PengajuanSuratService pengajuanSuratService;
+    @Autowired
+    private JenisSuratService jenisSuratService;
 
     //URL daftar pengajuan surat atau beranda
     @RequestMapping(value="/daftar-pengajuan-surat", method = RequestMethod.GET)
@@ -26,5 +30,21 @@ public class PengajuanSuratController {
         return "daftar-pengajuan-surat";
     }
 
+
+    //URL mapping yang digunakan untuk mengakses halaman add pasien
+    @RequestMapping(value = "/pengajuan-surat/tambah", method = RequestMethod.GET)
+    public String addPasienFormPage(Model model) {
+
+        //Membuat objek yang nantinya berguna untuk menampung hasil value yang ada di html
+        PengajuanSuratModel pengajuanSurat = new PengajuanSuratModel();
+
+        List<JenisSuratModel> jenisSuratList = jenisSuratService.getListJenisSurat();
+
+        model.addAttribute("jenisSuratList", jenisSuratList);
+        model.addAttribute("pengajuanSurat", pengajuanSurat);
+        model.addAttribute("title", "Menambah Pengajuan");
+
+        return "form-add-pasien";
+    }
 
 }
