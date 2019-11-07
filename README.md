@@ -13,11 +13,11 @@ https://github.com/ringgicahyo/TA_E_4
 
 **Kontrak Tahap 1 Tugas Akhir**
 <br/>
-| NPM | Nama Lengkap | Fitur yang dikerjakan |
-| --- | ------------ | --------------------- |
-| 1706025005 | Ringgi Cahyo Dwiputra | 12 |
-| 1706043885 | Muhammad Al-Kautsar Maktub | 4 |
-| 1706043802 | Sandika Prangga Putra | 2, 3 |
+| NPM | Nama Lengkap | Fitur yang dikerjakan |<br/>
+| --- | ------------ | --------------------- |<br/>
+| 1706025005 | Ringgi Cahyo Dwiputra | 12 |<br/>
+| 1706043885 | Muhammad Al-Kautsar Maktub | 4 |<br/>
+| 1706043802 | Sandika Prangga Putra | 2, 3 |<br/>
 | 1706026821 | Mila Shania | 7 |
 
 **Kontrak Tahap 2 Tugas Akhir**
