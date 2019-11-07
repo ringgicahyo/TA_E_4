@@ -12,25 +12,25 @@ https://github.com/ringgicahyo/TA_E_4
 4. **Mila Shania** - *1706026821*
 
 **Kontrak Tahap 1 Tugas Akhir**
-| NPM           | Nama Lengkap                  | Fitur yang dikerjakan  |
-| ------------- | ----------------------------- | ---------------------- |
-| 1706025005    | Ringgi Cahyo Dwiputra         | 12                     |
-| 1706043885    | Muhammad Al-Kautsar Maktub    | 4                      |
-| 1706043802    | Sandika Prangga Putra         | 2, 3                   |
-| 1706026821    | Mila Shania                   | 7                      |
+| NPM | Nama Lengkap | Fitur yang dikerjakan |
+| --- | ------------ | --------------------- |
+| 1706025005 | Ringgi Cahyo Dwiputra | 12 |
+| 1706043885 | Muhammad Al-Kautsar Maktub | 4 |
+| 1706043802 | Sandika Prangga Putra | 2, 3 |
+| 1706026821 | Mila Shania | 7 |
 
 **Kontrak Tahap 2 Tugas Akhir**
-| NPM           | Nama Lengkap                  | Fitur yang dikerjakan  |
-| ------------- | ----------------------------- | ---------------------- |
-| 1706025005    | Ringgi Cahyo Dwiputra         | 16                     |
-| 1706043885    | Muhammad Al-Kautsar Maktub    | 15                     |
-| 1706043802    | Sandika Prangga Putra         | 2, 3, 17               |
-| 1706026821    | Mila Shania                   | 6, 14                  |
+| NPM | Nama Lengkap | Fitur yang dikerjakan |
+| --- | ------------ | --------------------- |
+| 1706025005 | Ringgi Cahyo Dwiputra | 16 |
+| 1706043885 | Muhammad Al-Kautsar Maktub | 15 |
+| 1706043802 | Sandika Prangga Putra | 2, 3, 17 |
+| 1706026821 | Mila Shania | 6, 14 |
 
 **Kontrak Tahap 3 Tugas Akhir**
-| NPM           | Nama Lengkap                  | Fitur yang dikerjakan  |
-| ------------- | ----------------------------- | ---------------------- |
-| 1706025005    | Ringgi Cahyo Dwiputra         | 13                     |
-| 1706043885    | Muhammad Al-Kautsar Maktub    | 5, 10, 11              |
-| 1706043802    | Sandika Prangga Putra         | 1                      |
-| 1706026821    | Mila Shania                   | 8, 9                   |
+| NPM | Nama Lengkap | Fitur yang dikerjakan |
+| --- | ------------ | --------------------- |
+| 1706025005 | Ringgi Cahyo Dwiputra | 13 |
+| 1706043885 | Muhammad Al-Kautsar Maktub | 5, 10, 11 |
+| 1706043802 | Sandika Prangga Putra | 1 |
+| 1706026821 | Mila Shania | 8, 9 |
