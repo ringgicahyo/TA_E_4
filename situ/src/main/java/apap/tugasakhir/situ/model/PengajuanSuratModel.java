@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Entity
 @Table(name="pengajuanSurat")
-
 public class PengajuanSuratModel {
 
     @Id
@@ -43,17 +42,17 @@ public class PengajuanSuratModel {
     private String noSurat;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "diagnosisPenyakitId", referencedColumnName = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIgnore
-//    private User diagnosisPenyakitModel;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "pasienId", referencedColumnName = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIgnore
-//    private JenisSurat jenisSurat;
+    @ManyToOne
+    @JoinColumn(name = "pengajuanSuratId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserModel user;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private JenisSuratModel jenisSurat;
 
 
     public PengajuanSuratModel() {
