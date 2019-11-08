@@ -38,11 +38,7 @@ public class LowonganModel implements Serializable {
     @Column(name="keterangan", nullable = false, columnDefinition = "varchar(200)")
     private String keterangan;
 
-    @NotNull
-    @Column(name="jumlah", nullable = false)
-    private Integer jumlah;
-
-//    @ManyToOne
+    //    @ManyToOne
 //    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
@@ -53,4 +49,58 @@ public class LowonganModel implements Serializable {
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
 //    private JenisLowonganModel jenisLowongan;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getJudul() {
+        return judul;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
+    public Date getTanggalDibuka() {
+        return tanggalDibuka;
+    }
+
+    public void setTanggalDibuka(Date tanggalDibuka) {
+        this.tanggalDibuka = tanggalDibuka;
+    }
+
+    public Date getTanggalDitutup() {
+        return tanggalDitutup;
+    }
+
+    public void setTanggalDitutup(Date tanggalDitutup) {
+        this.tanggalDitutup = tanggalDitutup;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public Integer getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(Integer jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    @NotNull
+    @Column(name="jumlah", nullable = false)
+    private Integer jumlah;
+
+
 }
