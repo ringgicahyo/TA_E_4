@@ -2,6 +2,8 @@ package apap.tugasakhir.situ.controller;
 
 import apap.tugasakhir.situ.model.LowonganModel;
 import apap.tugasakhir.situ.service.LowonganService;
+import apap.tugasakhir.situ.model.JenisLowonganModel;
+import apap.tugasakhir.situ.service.JenisLowonganService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ public class LowonganController {
     @Autowired
     private LowonganService lowonganService;
 
+    @Autowired
+    JenisLowonganService jenisLowonganService;
+
     @RequestMapping("/lowongan")
     public String viewListLowongan(Model model){
         List<LowonganModel> listLowongan = lowonganService.getLowonganList();
@@ -24,7 +29,9 @@ public class LowonganController {
     @GetMapping(value = "/lowongan/tambah")
     public String addLowonganFormPage(Model model){
         LowonganModel newLowongan = new LowonganModel();
+        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
         model.addAttribute("lowongan", newLowongan);
+        model.addAttribute("listJenisLowongan", listJenisLowongan);
         return "form-add-lowongan";
     }
 

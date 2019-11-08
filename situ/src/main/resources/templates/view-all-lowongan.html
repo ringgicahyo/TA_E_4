@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <title>View All Lowongan</title>
+<!--    <object th:include="fragments/fragment :: css" th:remove="tag"></object>-->
+<!--    <object th:include="fragments/fragment :: js" th:remove="tag"></object>-->
 </head>
 <body>
 <div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
@@ -33,7 +33,7 @@
                         <td th:text="${lowongan.tanggalDitutup}"></td>
                         <td th:text="${lowongan.keterangan}"></td>
                         <td th:text="${lowongan.jumlah}"></td>
-<!--                        <td th:text="${lowongan.jenisLowongan}"></td>-->
+                        <td th:text="${lowongan.jenisLowongan}"></td>
                         <td>
                             <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
                                 <button class="btn btn-dark" type="submit">ubah</button>

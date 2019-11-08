@@ -1,4 +1,5 @@
 package apap.tugasakhir.situ.model;
+import apap.tugasakhir.situ.model.JenisLowonganModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
@@ -15,7 +16,7 @@ import java.util.Date;
 @Table(name = "lowongan")
 public class LowonganModel implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -24,12 +25,12 @@ public class LowonganModel implements Serializable {
     private String judul;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="tanggalDibuka", nullable = false)
     private Date tanggalDibuka;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="tanggalDitutup", nullable = false)
     private Date tanggalDitutup;
 
@@ -38,17 +39,21 @@ public class LowonganModel implements Serializable {
     @Column(name="keterangan", nullable = false, columnDefinition = "varchar(200)")
     private String keterangan;
 
+    @NotNull
+    @Column(name="jumlah", nullable = false)
+    private Integer jumlah;
+
 //    @ManyToOne
 //    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
 //    private UserModel user;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "jenisLowonganId", referencedColumnName = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIgnore
-//    private JenisLowonganModel jenisLowongan;
+
+    @ManyToOne
+    @JoinColumn(name = "jenisLowonganId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private JenisLowonganModel jenisLowongan;
 
     public Integer getId() {
         return id;
@@ -98,9 +103,20 @@ public class LowonganModel implements Serializable {
         this.jumlah = jumlah;
     }
 
-    @NotNull
-    @Column(name="jumlah", nullable = false)
-    private Integer jumlah;
+    public UserModel getUser() {
+        return user;
+    }
 
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+    public JenisLowonganModel getJenisLowongan() {
+        return jenisLowongan;
+    }
+
+    public void setJenisLowongan(JenisLowonganModel jenisLowongan) {
+        this.jenisLowongan = jenisLowongan;
+    }
 
 }
