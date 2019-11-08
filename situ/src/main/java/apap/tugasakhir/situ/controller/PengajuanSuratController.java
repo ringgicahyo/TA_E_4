@@ -2,15 +2,19 @@ package apap.tugasakhir.situ.controller;
 
 import apap.tugasakhir.situ.model.JenisSuratModel;
 import apap.tugasakhir.situ.model.PengajuanSuratModel;
+import apap.tugasakhir.situ.model.UserModel;
 import apap.tugasakhir.situ.service.JenisSuratService;
 import apap.tugasakhir.situ.service.PengajuanSuratService;
+import apap.tugasakhir.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -19,6 +23,8 @@ public class PengajuanSuratController {
     private PengajuanSuratService pengajuanSuratService;
     @Autowired
     private JenisSuratService jenisSuratService;
+    @Autowired
+    private UserService userService;
 
     //URL daftar pengajuan surat atau beranda
     @RequestMapping(value="/daftar-pengajuan-surat", method = RequestMethod.GET)
@@ -43,10 +49,44 @@ public class PengajuanSuratController {
 
         model.addAttribute("jenisSuratList", jenisSuratList);
         model.addAttribute("pengajuanSurat", pengajuanSurat);
-        model.addAttribute("title", "Menambah Pengajuan");
+        model.addAttribute("title", "Menambah Pengajuan Surat");
 
         return "form-pengajuan-surat";
     }
+
+    //URL mapping yang digunakan untuk mensubmit form halaman add pasien
+    @RequestMapping(value = "/pengajuan-surat/tambah", method = RequestMethod.POST)
+    public String addPasienSubmit(@ModelAttribute PengajuanSuratModel pengajuanSurat, Model model) {
+        JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(pengajuanSurat.getIdJenisSurat());
+
+        pengajuanSurat.setNoSurat("0");
+        pengajuanSurat.setTanggalDisetujui(null);
+        System.out.println(pengajuanSurat.getKeterangan());
+        Date date = new Date();
+        pengajuanSurat.setTanggalPengajuan(date);
+
+        pengajuanSurat.setJenisSurat(jenisSurat);
+        System.out.println(pengajuanSurat.getJenisSurat());
+        System.out.println(pengajuanSurat.getTanggalPengajuan());
+
+        pengajuanSurat.setStatus("Menunggu Persetujuan");
+        System.out.println(pengajuanSurat.getStatus());
+
+        UserModel user = userService.getUserById(1);
+        pengajuanSurat.setUser(user);
+
+        System.out.println(pengajuanSurat.getUser());
+        System.out.println(pengajuanSurat.getIdJenisSurat());
+
+        pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
+        model.addAttribute("pengajuanSurat", pengajuanSurat);
+        model.addAttribute("title", "Menambah Pengajuan Surat");
+
+        return "pengajuan-surat-response";
+    }
+
+
+
 
 //    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
 //    @RequestMapping(value="/pengajuan-surat/hapus/{id}")

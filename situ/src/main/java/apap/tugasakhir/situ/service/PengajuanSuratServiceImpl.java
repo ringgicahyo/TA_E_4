@@ -21,6 +21,11 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService{
     }
 
     @Override
+    public PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
+        return pengajuanSuratDb.save(pengajuanSurat);
+    }
+
+    @Override
     public String deletePengajuanSurat(Long id) {
         PengajuanSuratModel pengajuanSurat = pengajuanSuratDb.findById(id).get();
         return "delete";

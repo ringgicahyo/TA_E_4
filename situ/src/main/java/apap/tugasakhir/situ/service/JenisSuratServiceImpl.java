@@ -43,5 +43,10 @@ public class JenisSuratServiceImpl implements JenisSuratService {
     return jenisSuratDb.findAll();
   }
 
+  @Override
+  public JenisSuratModel getJenisSurat(Integer id) {
+    return jenisSuratDb.getById(id);
+  }
+
 
 }

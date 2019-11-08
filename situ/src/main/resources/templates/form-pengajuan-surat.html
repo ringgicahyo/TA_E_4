@@ -10,18 +10,17 @@
 <div class="container-fluid">
     <div class="container">
         <h1 class="text-center font-weight-bold mt-5" > Tambah Surat </h1>
-
-        <form th:action="@{/pasien/add}" th:object="${pasien}" method="POST">
-            Jenis Surat:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-            <br><br>
-                <select class="form-control" >
+        <br><br><br>
+        <form th:action="@{/pengajuan-surat/tambah}" th:object="${pengajuanSurat}" method="POST">
+            Jenis Surat:
+                <select class="form-control" th:field="*{idJenisSurat}">
                     <option th:each="jenisSurat : ${jenisSuratList}" th:value="${jenisSurat.id}"
                             th:text="${jenisSurat.nama}">
                 </select>
             <br><br>
 
             Keterangan:
-            <input class="form-control" type="date" th:field="*{keterangan}" /><br><br>
+            <input class="form-control" type="text" th:field="*{keterangan}" /><br><br>
 
             <button class="btn btn-primary">
                 <a style="color: white"> Submit </a>
