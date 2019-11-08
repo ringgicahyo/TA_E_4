@@ -118,5 +118,4 @@ public class LowonganModel implements Serializable {
     public void setJenisLowongan(JenisLowonganModel jenisLowongan) {
         this.jenisLowongan = jenisLowongan;
     }
-
 }
