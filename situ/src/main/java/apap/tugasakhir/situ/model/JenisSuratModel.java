@@ -55,12 +55,12 @@ public class JenisSuratModel implements Serializable {
     this.keterangan = keterangan;
   }
 
-  // /**
-  //  * @param listPengajuanSurat the listPengajuanSurat to set
-  //  */
-  // public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
-  //   this.listPengajuanSurat = listPengajuanSurat;
-  // }
+  /**
+   * @param listPengajuanSurat the listPengajuanSurat to set
+   */
+  public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
+    this.listPengajuanSurat = listPengajuanSurat;
+  }
 
   /**
    * @return the id
@@ -83,11 +83,11 @@ public class JenisSuratModel implements Serializable {
     return keterangan;
   }
 
-  // /**
-  //  * @return the listPengajuanSurat
-  //  */
-  // public List<PengajuanSuratModel> getListPengajuanSurat() {
-  //   return listPengajuanSurat;
-  // }
+  /**
+   * @return the listPengajuanSurat
+   */
+  public List<PengajuanSuratModel> getListPengajuanSurat() {
+    return listPengajuanSurat;
+  }
 
 }
