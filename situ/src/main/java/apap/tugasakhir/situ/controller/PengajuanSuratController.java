@@ -48,19 +48,19 @@ public class PengajuanSuratController {
         return "form-add-pasien";
     }
 
-    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
-    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
-    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
-                                   Model model) {
-        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
-
-        model.addAttribute("title", "Delete Diagnosis Penyakit");
-
-        //Cek apakah berhasil dihapus atau tidak
-        if(hasilHapus.equals("delete")){
-            return "delete-diagnosis-penyakit";
-        }
-        return "delete-fail";
-    }
+//    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
+//    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
+//    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
+//                                   Model model) {
+//        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
+//
+//        model.addAttribute("title", "Delete Diagnosis Penyakit");
+//
+//        //Cek apakah berhasil dihapus atau tidak
+//        if(hasilHapus.equals("delete")){
+//            return "delete-diagnosis-penyakit";
+//        }
+//        return "delete-fail";
+//    }
 
 }

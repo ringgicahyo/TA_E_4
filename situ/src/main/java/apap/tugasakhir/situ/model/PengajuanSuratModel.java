@@ -13,56 +13,42 @@ import java.util.Date;
 public class PengajuanSuratModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idPengajuanSurat;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @NotNull
-//    @Size(max = 1)
     @Column(name="tanggalPengajuan", nullable = false)
     private Date tanggalPengajuan;
 
     @NotNull
-//    @Size(max = 1)
     @Column(name="tanggalDisetujui", nullable = false)
     private Date tanggalDisetujui;
 
     @NotNull
-//    @Size(max = 1)
     @Column(name="keterangan", nullable = false)
     private String keterangan;
 
     @NotNull
-//    @Size(max = 1)
     @Column(name="status", nullable = false)
     private String status;
 
     @NotNull
-//    @Size(max = 1)
     @Column(name="noSurat", nullable = false)
     private String noSurat;
-
-
-    @ManyToOne
-    @JoinColumn(name = "pengajuanSuratId", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private UserModel user;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
+    private UserModel user;
+
+    @ManyToOne
+    @JoinColumn(name = "jenisSuratId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private JenisSuratModel jenisSurat;
 
     public PengajuanSuratModel() {
-    }
-
-    public Long getIdPengajuanSurat() {
-        return idPengajuanSurat;
-    }
-
-    public void setIdPengajuanSurat(Long idPengajuanSurat) {
-        this.idPengajuanSurat = idPengajuanSurat;
     }
 
     public Date getTanggalPengajuan() {
@@ -103,5 +89,29 @@ public class PengajuanSuratModel {
 
     public void setNoSurat(String noSurat) {
         this.noSurat = noSurat;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+    public JenisSuratModel getJenisSurat() {
+        return jenisSurat;
+    }
+
+    public void setJenisSurat(JenisSuratModel jenisSurat) {
+        this.jenisSurat = jenisSurat;
     }
 }

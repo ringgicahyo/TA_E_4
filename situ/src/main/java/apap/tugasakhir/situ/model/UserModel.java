@@ -10,7 +10,7 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "jenisSurat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<PengajuanSuratModel> listPengajuanSurat;
 
 }
