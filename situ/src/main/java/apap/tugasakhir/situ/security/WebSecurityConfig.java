@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .anyRequest().authenticated()
+//                .antMatchers("/daftar-pengajuan-surat").hasAnyAuthority(("Admin TU"), ("Siswa"),("Guru"))
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()

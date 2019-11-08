@@ -67,4 +67,12 @@ public class UserModel implements Serializable {
     public void setRole(RoleModel role) {
         this.role = role;
     }
+
+    public List<PengajuanSuratModel> getListPengajuanSurat() {
+        return listPengajuanSurat;
+    }
+
+    public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
+        this.listPengajuanSurat = listPengajuanSurat;
+    }
 }
