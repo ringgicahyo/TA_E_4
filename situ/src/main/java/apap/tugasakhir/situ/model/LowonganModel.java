@@ -103,13 +103,13 @@ public class LowonganModel implements Serializable {
         this.jumlah = jumlah;
     }
 
-//    public UserModel getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(UserModel user) {
-//        this.user = user;
-//    }
+    // public UserModel getUser() {
+    //     return user;
+    // }
+
+    // public void setUser(UserModel user) {
+    //     this.user = user;
+    // }
 
     public JenisLowonganModel getJenisLowongan() {
         return jenisLowongan;
