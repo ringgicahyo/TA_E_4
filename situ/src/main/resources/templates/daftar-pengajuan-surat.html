@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title id="pageTitle">Home</title>
+    <object th:include="fragments/fragment  ::  css" th:remove="tag"></object>
+    <object th:include="fragments/fragment  ::  js" th:remove="tag"></object>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<nav th:replace="fragments/fragment  ::  navbar"></nav>
+<div class="container-fluid">
+
+    <h1 class="text-center font-weight-bold mt-5" > Pengajuan Surat </h1>
+
+    <div class="row mt-5 ">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Daftar Pengajuan Surat
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th> No</th>
+                            <th> Nama Pemohon</th>
+                            <th> Jenis Surat </th>
+                            <th> Nomor Surat</th>
+                            <th> Waktu Pengajuan </th>
+                            <th> Status</th>
+                            <th> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--                        <tr th:each="pasien, iterationStatus : *{pasienList}">-->
+<!--                            <td th:text="${iterationStatus.count}"> </td>-->
+<!--                            <td th:text="${pengajuanSurat.namaPemohon}"></td>-->
+<!--                            <td th:text="${pengajuanSurat.jenisSurat}"></td>-->
+<!--                            <td th:text="${pengajuanSurat.nomorSurat}"></td>-->
+<!--                            <td th:text="${pengajuanSurat.kodePasien}"></td>-->
+<!--                            <td th:text="${#dates.format(pengajuanSurat.waktuPengajuan, 'dd-MM-yyyy')}"></td>-->
+<!--                            <td th:text="${pengajuanSurat.status}"></td>-->
+                            <div class="inline-buttons">
+                                <td>
+<!--                                    <a th:href= "@{/daftar-pengajuan-surat}">-->
+<!--                                        <button class="btn btn-sm btn-primary">Detail</button>-->
+<!--                                    </a>-->
+                                    <a th:href= "@{/pengajuan-surat/ubah/}">
+                                        <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i> Ubah</button>
+                                    </a>
+                                    <a th:href= "@{/pengajuan-surat/hapus/}">
+                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </a>
+                                </td>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
