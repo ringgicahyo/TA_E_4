@@ -13,15 +13,14 @@ import java.util.Date;
 public class PengajuanSuratModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
     @Column(name="tanggalPengajuan", nullable = false)
     private Date tanggalPengajuan;
 
-    @NotNull
-    @Column(name="tanggalDisetujui", nullable = false)
+    @Column(name="tanggalDisetujui", nullable = true)
     private Date tanggalDisetujui;
 
     @NotNull
@@ -41,6 +40,9 @@ public class PengajuanSuratModel {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserModel user;
+
+    @Transient
+    private Integer idJenisSurat;
 
     @ManyToOne
     @JoinColumn(name = "jenisSuratId", referencedColumnName = "id", nullable = false)
@@ -105,6 +107,14 @@ public class PengajuanSuratModel {
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public Integer getIdJenisSurat() {
+        return idJenisSurat;
+    }
+
+    public void setIdJenisSurat(Integer idJenisSurat) {
+        this.idJenisSurat = idJenisSurat;
     }
 
     public JenisSuratModel getJenisSurat() {

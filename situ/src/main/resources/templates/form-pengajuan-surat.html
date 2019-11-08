@@ -13,7 +13,7 @@
         <br><br><br>
         <form th:action="@{/pengajuan-surat/tambah}" th:object="${pengajuanSurat}" method="POST">
             Jenis Surat:
-                <select class="form-control" >
+                <select class="form-control" th:field="*{idJenisSurat}">
                     <option th:each="jenisSurat : ${jenisSuratList}" th:value="${jenisSurat.id}"
                             th:text="${jenisSurat.nama}">
                 </select>

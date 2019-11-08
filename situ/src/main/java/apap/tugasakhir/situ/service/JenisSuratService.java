@@ -10,4 +10,5 @@ public interface JenisSuratService {
 
   boolean cekKesamaanNamaJenisSurat (String nama);
   List<JenisSuratModel> getListJenisSurat();
+  JenisSuratModel getJenisSurat(Integer id);
 }

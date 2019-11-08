@@ -7,5 +7,5 @@ import apap.tugasakhir.situ.model.JenisSuratModel;
 
 @Repository
 public interface JenisSuratDb extends JpaRepository<JenisSuratModel, Integer> {
-  
+    JenisSuratModel getById(Integer id);
 }
