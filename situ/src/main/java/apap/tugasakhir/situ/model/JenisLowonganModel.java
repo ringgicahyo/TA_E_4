@@ -10,6 +10,12 @@ import javax.validation.constraints.Size;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import java.util.List;
+
+import apap.tugasakhir.situ.model.LowonganModel;
 
 @Entity
 @Table(name = "jenisLowongan")
@@ -29,8 +35,8 @@ public class JenisLowonganModel implements Serializable {
   @Column(name = "keterangan", nullable =  false)  
   private String keterangan;
 
-  // @OneToMany(mappedBy = "jenisLowongan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  // private List<LowonganModel> listLowongan;
+  @OneToMany(mappedBy = "jenisLowongan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<LowonganModel> listLowongan;
 
   /**
    * @param id the id to set
@@ -54,6 +60,13 @@ public class JenisLowonganModel implements Serializable {
   }
 
   /**
+   * @param listLowongan the listLowongan to set
+   */
+  public void setListLowongan(List<LowonganModel> listLowongan) {
+    this.listLowongan = listLowongan;
+  }
+
+  /**
    * @return the id
    */
   public Integer getId() {
@@ -72,6 +85,13 @@ public class JenisLowonganModel implements Serializable {
    */
   public String getKeterangan() {
     return keterangan;
+  }
+
+  /**
+   * @return the listLowongan
+   */
+  public List<LowonganModel> getListLowongan() {
+    return listLowongan;
   }
 
 }

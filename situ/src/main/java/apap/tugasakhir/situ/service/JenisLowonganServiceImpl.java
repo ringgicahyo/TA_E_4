@@ -35,4 +35,9 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
     }
     return false;
   }
+
+  @Override
+  public List<JenisLowonganModel> getAllJenisLowongan() {    
+    return jenisLowonganDb.findAll();
+  }
 }
