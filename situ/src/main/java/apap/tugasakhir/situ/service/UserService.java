@@ -3,5 +3,11 @@ package apap.tugasakhir.situ.service;
 import apap.tugasakhir.situ.model.UserModel;
 
 public interface UserService {
-    UserModel getUserById(Integer id);
+    UserModel addUser(UserModel user);
+    public String encrypt(String password);
+    UserModel getUserByUsername(String username);
+    UserModel updatePassword(UserModel user, String password);
+
+    boolean comparePasswordAgainstDatabase(UserModel user, String password);
+    boolean checkPasswordValidity(String password);
 }
