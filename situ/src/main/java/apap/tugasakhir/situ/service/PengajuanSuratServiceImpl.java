@@ -28,7 +28,7 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService{
 
     @Override
     public PengajuanSuratModel ubahPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
-        PengajuanSuratModel targetUbah = pengajuanSuratDb.findById(pengajuanSurat.getIdPengajuanSurat()).get();
+//        PengajuanSuratModel targetUbah = pengajuanSuratDb.findById(pengajuanSurat.getIdPengajuanSurat()).get();
 //        try{
 //            targetUbah.setNamaPasien(pasien.getNamaPasien());
 //            targetUbah.setTempatLahir(pasien.getTempatLahir());

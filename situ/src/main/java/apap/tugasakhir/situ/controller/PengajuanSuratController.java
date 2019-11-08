@@ -32,9 +32,9 @@ public class PengajuanSuratController {
     }
 
 
-    //URL mapping yang digunakan untuk mengakses halaman add pasien
+    //URL mapping yang digunakan untuk mengakses halaman form menambahkan pengajuan surat
     @RequestMapping(value = "/pengajuan-surat/tambah", method = RequestMethod.GET)
-    public String addPasienFormPage(Model model) {
+    public String addPengajuanSuratFormPage(Model model) {
 
         //Membuat objek yang nantinya berguna untuk menampung hasil value yang ada di html
         PengajuanSuratModel pengajuanSurat = new PengajuanSuratModel();
@@ -45,22 +45,22 @@ public class PengajuanSuratController {
         model.addAttribute("pengajuanSurat", pengajuanSurat);
         model.addAttribute("title", "Menambah Pengajuan");
 
-        return "form-add-pasien";
+        return "form-pengajuan-surat";
     }
 
-    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
-    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
-    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
-                                   Model model) {
-        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
-
-        model.addAttribute("title", "Delete Diagnosis Penyakit");
-
-        //Cek apakah berhasil dihapus atau tidak
-        if(hasilHapus.equals("delete")){
-            return "delete-diagnosis-penyakit";
-        }
-        return "delete-fail";
-    }
+//    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
+//    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
+//    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
+//                                   Model model) {
+//        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
+//
+//        model.addAttribute("title", "Delete Diagnosis Penyakit");
+//
+//        //Cek apakah berhasil dihapus atau tidak
+//        if(hasilHapus.equals("delete")){
+//            return "delete-diagnosis-penyakit";
+//        }
+//        return "delete-fail";
+//    }
 
 }

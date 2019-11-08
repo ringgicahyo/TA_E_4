@@ -25,7 +25,7 @@
                         <thead>
                         <tr>
                             <th> No</th>
-                            <th> Nama Pemohon</th>
+<!--                            <th> Nama Pemohon</th>-->
                             <th> Jenis Surat </th>
                             <th> Nomor Surat</th>
                             <th> Waktu Pengajuan </th>
@@ -34,14 +34,13 @@
                         </tr>
                         </thead>
                         <tbody>
-<!--                        <tr th:each="pasien, iterationStatus : *{pasienList}">-->
-<!--                            <td th:text="${iterationStatus.count}"> </td>-->
-<!--                            <td th:text="${pengajuanSurat.namaPemohon}"></td>-->
-<!--                            <td th:text="${pengajuanSurat.jenisSurat}"></td>-->
-<!--                            <td th:text="${pengajuanSurat.nomorSurat}"></td>-->
-<!--                            <td th:text="${pengajuanSurat.kodePasien}"></td>-->
-<!--                            <td th:text="${#dates.format(pengajuanSurat.waktuPengajuan, 'dd-MM-yyyy')}"></td>-->
-<!--                            <td th:text="${pengajuanSurat.status}"></td>-->
+                        <tr th:each="pengajuanSurat, iterationStatus : *{listPengajuan}">
+                            <td th:text="${iterationStatus.count}"> </td>
+<!--                            <td th:text="${pengajuanSurat.user.nama}"></td>-->
+                            <td th:text="${pengajuanSurat.jenisSurat.nama}"></td>
+                            <td th:text="${pengajuanSurat.noSurat}"></td>
+                            <td th:text="${#dates.format(pengajuanSurat.tanggalPengajuan, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${pengajuanSurat.status}"></td>
                             <div class="inline-buttons">
                                 <td>
 <!--                                    <a th:href= "@{/daftar-pengajuan-surat}">-->

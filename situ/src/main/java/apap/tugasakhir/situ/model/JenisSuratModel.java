@@ -1,16 +1,12 @@
 package apap.tugasakhir.situ.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 // import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.persistence.GenerationType;
 // import javax.persistence.FetchType;
 // import javax.persistence.CascadeType;
 
@@ -35,8 +31,8 @@ public class JenisSuratModel implements Serializable {
   @Column(name = "keterangan", nullable = false)
   private String keterangan;
 
-  // @OneToMany(mappedBy = "jenisSurat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  // private List<PengajuanSuratModel> listPengajuanSurat;
+   @OneToMany(mappedBy = "jenisSurat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private List<PengajuanSuratModel> listPengajuanSurat;
 
   /**
    * @param id the id to set
