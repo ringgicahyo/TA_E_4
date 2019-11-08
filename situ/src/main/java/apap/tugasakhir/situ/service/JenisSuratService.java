@@ -2,8 +2,9 @@ package apap.tugasakhir.situ.service;
 
 import apap.tugasakhir.situ.model.JenisSuratModel;
 
-import java.util.List;
-
 public interface JenisSuratService {
-    List<JenisSuratModel> getListJenisSurat();
+
+  boolean addJenisSurat (JenisSuratModel jenisSurat);
+
+  boolean cekKesamaanNamaJenisSurat (String nama);
 }

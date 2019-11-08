@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Tambah Jenis Surat</title>
+</head>
+
+<body>
+  <div>
+    <div th:if="${status != null}">
+      <span th:if="${!status}" th:text="${message}" style="color: red"></span>
+      <span th:if="${status}" th:text="${message}" style="color: green"></span>
+    </div>    
+    <div>
+      <form th:action="@{/jenis-surat/add}" method="POST" th:object="${jenisSurat}">
+        <label for="input-jenis-nama">Nama Jenis Surat*</label>
+        <input type="text" name="nama" id="input-jenis-nama" required placeholder="Masukkan Nama Jenis Surat (maksimal 200 karakter)" maxlength="200">
+        <label for="input-jenis-keterangan">Keterangan Jenis Surat*</label>
+        <input type="text" name="keterangan" id="input-jenis-keterangan" required placeholder="Masukkan Keterangan Jenis Surat (maksimal 200 karakter)" maxlength="200">
+        <button type="submit">Simpan</button>
+      </form>
+    </div>    
+  </div>
+</body>
+
+</html>

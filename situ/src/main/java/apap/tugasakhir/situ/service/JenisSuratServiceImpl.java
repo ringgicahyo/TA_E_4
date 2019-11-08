@@ -1,24 +1,41 @@
 package apap.tugasakhir.situ.service;
 
-import apap.tugasakhir.situ.model.JenisSuratModel;
-import apap.tugasakhir.situ.model.PengajuanSuratModel;
-import apap.tugasakhir.situ.repository.JenisSuratDb;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.TransactionScoped;
-import javax.transaction.Transactional;
-import java.util.List;
+import apap.tugasakhir.situ.model.JenisSuratModel;
+import apap.tugasakhir.situ.repository.JenisSuratDb;
 
 @Service
-@Transactional
-public class JenisSuratServiceImpl implements JenisSuratService{
-    @Autowired
-    private JenisSuratDb jenisSuratDb;
+public class JenisSuratServiceImpl implements JenisSuratService {
 
-    @Override
-    public List<JenisSuratModel> getListJenisSurat() {
-        return jenisSuratDb.findAll();
+  @Autowired
+  JenisSuratDb jenisSuratDb;
+
+  @Override
+  public boolean addJenisSurat(JenisSuratModel jenisSurat) {
+    
+    if(cekKesamaanNamaJenisSurat(jenisSurat.getNama())) {
+      return false;
     }
+
+    jenisSuratDb.save(jenisSurat);
+    return true;
+  }
+
+  @Override
+  public boolean cekKesamaanNamaJenisSurat(String nama) {
+    List<JenisSuratModel> listJenisSurat = jenisSuratDb.findAll();
+
+    for(JenisSuratModel x : listJenisSurat) {
+      if(x.getNama().equals(nama)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
 }

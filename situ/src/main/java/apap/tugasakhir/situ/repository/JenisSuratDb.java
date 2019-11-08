@@ -1,7 +1,11 @@
 package apap.tugasakhir.situ.repository;
 
-import apap.tugasakhir.situ.model.JenisSuratModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface JenisSuratDb extends JpaRepository<JenisSuratModel, Long> {
+import apap.tugasakhir.situ.model.JenisSuratModel;
+
+@Repository
+public interface JenisSuratDb extends JpaRepository<JenisSuratModel, Integer> {
+  
 }
