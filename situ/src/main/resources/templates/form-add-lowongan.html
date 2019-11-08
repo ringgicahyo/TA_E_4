@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Add Lowongan</title>
+<!--    <object th:include="fragments/fragment :: css" th:remove="tag"></object>-->
+<!--    <object th:include="fragments/fragment :: js" th:remove="tag"></object>-->
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+    <h3>Tambah Lowongan</h3>
+
+    <form th:action="@{/lowongan/tambah}" th:object="${lowongan}" method="POST">
+        <div class="form-group row">
+            <label for="judulLowongan" class="col-sm-2 col-form-label">Judul</label>
+            <div class="col-sm-2">
+                <input th:type="text" class="form-control" id="judulLowongan" name="judul">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="tanggalDibuka" class="col-sm-2 col-form-label">Tanggal Dibuka</label>
+            <div class="col-sm-2">
+                <input th:type="date" class="form-control" id="tanggalDibuka" name="tanggalDibuka">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="tanggalDitutup" class="col-sm-2 col-form-label">Tanggal Ditutup</label>
+            <div class="col-sm-2">
+                <input th:type="date" class="form-control" id="tanggalDitutup" name="tanggalDitutup">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+            <div class="col-sm-2">
+                <input th:type="text" class="form-control" id="keterangan" name="keterangan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
+            <div class="col-sm-2">
+                <input th:type="number" class="form-control" id="jumlah" name="jumlah">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="jenisLowongan" class="col-sm-2 col-form-label">Jenis Lowongan</label>
+            <div class="col-sm-2">
+                <select th:field="${lowongan.jenisLowongan}" id="jenisLowongan" class="form-control">
+                    <option th:value="" selected> -- Pilih Jenis Lowongan -- </option>
+                    <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
