@@ -72,8 +72,8 @@ public class PengajuanSuratController {
         pengajuanSurat.setStatus("Menunggu Persetujuan");
         System.out.println(pengajuanSurat.getStatus());
 
-        UserModel user = userService.getUserById(1);
-        pengajuanSurat.setUser(user);
+        // UserModel user = userService.getUserById(1);
+        // pengajuanSurat.setUser(user);
 
         System.out.println(pengajuanSurat.getUser());
         System.out.println(pengajuanSurat.getIdJenisSurat());

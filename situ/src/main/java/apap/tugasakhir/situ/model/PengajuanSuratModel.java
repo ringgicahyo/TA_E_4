@@ -36,7 +36,7 @@ public class PengajuanSuratModel {
     private String noSurat;
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "userId", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserModel user;
