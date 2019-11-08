@@ -38,4 +38,10 @@ public class JenisSuratServiceImpl implements JenisSuratService {
     return false;
   }
 
+  @Override
+  public List<JenisSuratModel> getListJenisSurat() {
+    return jenisSuratDb.findAll();
+  }
+
+
 }
