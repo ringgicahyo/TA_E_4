@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDb userDb;
-
     @Override
     public UserModel addUser(UserModel user) {
         String pass = encrypt(user.getPassword());
@@ -59,6 +58,7 @@ public class UserServiceImpl implements UserService {
         userDb.save(user);
 
         return user;
+    }
       
 // import org.springframework.stereotype.Service;
 
