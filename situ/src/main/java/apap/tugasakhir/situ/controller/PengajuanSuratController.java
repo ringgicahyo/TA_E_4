@@ -28,16 +28,18 @@ public class PengajuanSuratController {
     private UserService userService;
 
     //URL daftar pengajuan surat atau beranda
-    @RequestMapping(value="/daftar-pengajuan-surat/{username}", method = RequestMethod.GET)
-    public String home(@PathVariable String username, Model model) {
-        UserModel user = userService.getUserByUsername(username);
+//    @RequestMapping(value="/daftar-pengajuan-surat/{username}", method = RequestMethod.GET)
+//    public String home(@PathVariable String username, Model model) {
+    @RequestMapping(value="/daftar-pengajuan-surat", method = RequestMethod.GET)
+    public String home(Model model) {
+//        UserModel user = userService.getUserByUsername(username);
         List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
-        if(user.getRole().getNama().equals("Admin TU")){
-            //Membuat list yang menampung objek semua pasien yang ada pada database
+//        if(user.getRole().getNama().equals("Admin TU")){
+//            //Membuat list yang menampung objek semua pasien yang ada pada database
             pengajuanSuratService.getListPengajuanSurat();
-        }else {
-            user.getListPengajuanSurat();
-        }
+//        }else {
+//            user.getListPengajuanSurat();
+//        }
         model.addAttribute("listPengajuan", listPengajuan);
         model.addAttribute("title", "Daftar Pengajuan Surat");
         return "daftar-pengajuan-surat";
