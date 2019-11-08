@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -31,6 +32,9 @@ public class UserModel implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private RoleModel role;
+  
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<PengajuanSuratModel> listPengajuanSurat;
 
     public String getUuid() {
         return uuid;
@@ -63,5 +67,4 @@ public class UserModel implements Serializable {
     public void setRole(RoleModel role) {
         this.role = role;
     }
-
 }

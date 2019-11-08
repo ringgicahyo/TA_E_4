@@ -59,5 +59,18 @@ public class UserServiceImpl implements UserService {
         userDb.save(user);
 
         return user;
-    }
+      
+// import org.springframework.stereotype.Service;
+
+// import javax.transaction.Transactional;
+
+// @Transactional
+// @Service
+// public class UserServiceImpl implements UserService{
+//     @Autowired
+//     private UserDb userDb;
+//     @Override
+//     public UserModel getUserById(Integer id) {
+//         return userDb.getById(id);
+//     }
 }
