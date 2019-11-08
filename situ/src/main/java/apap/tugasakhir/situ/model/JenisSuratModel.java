@@ -27,7 +27,7 @@ public class JenisSuratModel implements Serializable {
 
   @NotNull
   @Size(max = 200)
-  @Column(name = "nama", nullable = false)
+  @Column(name = "nama", nullable = false, unique = true)
   private String nama;
 
   @NotNull
