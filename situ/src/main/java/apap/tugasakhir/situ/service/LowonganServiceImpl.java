@@ -26,18 +26,6 @@ public class LowonganServiceImpl implements LowonganService {
     }
 
     @Override
-    public LowonganModel updateLowongan(LowonganModel lowongan) {
-        LowonganModel targetLowongan = lowonganDb.findById(lowongan.getId()).get();
-
-        try {
-            targetLowongan.setJumlah(lowongan.getJumlah());
-            return targetLowongan;
-        } catch (NullPointerException e){
-            return null;
-        }
-    }
-
-    @Override
     public Optional<LowonganModel> getLowonganById(Integer id) {
         return lowonganDb.findById(id);
     }

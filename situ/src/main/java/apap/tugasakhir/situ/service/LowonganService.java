@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface LowonganService {
     void addLowongan(LowonganModel lowongan);
     List<LowonganModel> getLowonganList();
-    LowonganModel updateLowongan(LowonganModel lowongan);
     Optional<LowonganModel> getLowonganById(Integer id);
 }

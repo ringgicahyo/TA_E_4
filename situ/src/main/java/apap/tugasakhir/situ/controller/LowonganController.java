@@ -41,18 +41,4 @@ public class LowonganController {
         model.addAttribute("lowongan", lowongan);
         return "view-lowongan-by-id";
     }
-
-    @GetMapping(value = "/lowongan/update/{id}")
-    public String updateLowonganFormPage(@PathVariable Integer id, Model model){
-        LowonganModel existingLowongan = lowonganService.getLowonganById(id).get();
-        model.addAttribute("existingLowongan", existingLowongan);
-        return "form-update-lowongan";
-    }
-
-    @PostMapping(value = "/lowongan/update/{id}")
-    public String updateLowonganFormSubmit(@PathVariable Integer id, @ModelAttribute LowonganModel lowongan, Model model){
-        LowonganModel newLowonganData = lowonganService.updateLowongan(lowongan);
-        model.addAttribute("newLowonganData", newLowonganData);
-        return "redirect:/lowongan/update/{id}";
-    }
 }

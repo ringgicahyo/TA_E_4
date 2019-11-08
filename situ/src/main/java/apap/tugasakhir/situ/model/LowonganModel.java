@@ -38,7 +38,7 @@ public class LowonganModel implements Serializable {
     @Column(name="keterangan", nullable = false, columnDefinition = "varchar(200)")
     private String keterangan;
 
-    //    @ManyToOne
+//    @ManyToOne
 //    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
