@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,8 +37,11 @@ public class LowonganController {
     }
 
     @PostMapping(value = "/lowongan/tambah")
-    public String addLowonganFormSubmit(@ModelAttribute LowonganModel lowongan, Model model){
+    public String addLowonganFormSubmit(@ModelAttribute LowonganModel lowongan, Model model, RedirectAttributes redirectAttributes){
         lowonganService.addLowongan(lowongan);
+        System.out.println("-----------masuk------------");
+        redirectAttributes.addFlashAttribute("status", true);
+        redirectAttributes.addFlashAttribute("message", "Penambahan lowongan dengan judul " + lowongan.getJudul() + " berhasil!");
         model.addAttribute("judulLowongan", lowongan.getJudul());
         return "redirect:/lowongan/tambah";
     }

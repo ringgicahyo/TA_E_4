@@ -44,7 +44,7 @@ public class LowonganModel implements Serializable {
     private Integer jumlah;
 
 //    @ManyToOne
-//    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+//    @JoinColumn(name = "userUuid", referencedColumnName = "uuid", nullable = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
 //    private UserModel user;
@@ -103,13 +103,13 @@ public class LowonganModel implements Serializable {
         this.jumlah = jumlah;
     }
 
-    public UserModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
+//    public UserModel getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UserModel user) {
+//        this.user = user;
+//    }
 
     public JenisLowonganModel getJenisLowongan() {
         return jenisLowongan;
