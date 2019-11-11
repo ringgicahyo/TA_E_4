@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment  ::  css" th:remove="tag"></object>
+    <object th:include="fragments/fragment  ::  js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment  ::  navbar"></nav>
+<div class="container"><br>
+    <div th:if="${hasil} == 'Delete'">
+        <h2 class="text-center" th:text="'Pengajuan Surat berhasil dihapus. '"></h2>
+    </div>
+    <div th:if="${hasil} == 'Fail Delete'">
+        <h2 class="text-center" th:text="'Pengajuan Surat gagal dihapus. '"></h2>
+    </div>
+
+
+    <br><br>
+    <!--    <a th:href= "@{/}">-->
+    <!--        <button class="btn btn btn-dark">Kembali ke beranda</button>-->
+    <!--    </a>-->
+
+</div>
+</body>
+</html>
