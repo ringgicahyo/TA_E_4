@@ -26,9 +26,14 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService{
     }
 
     @Override
-    public String deletePengajuanSurat(Long id) {
-        PengajuanSuratModel pengajuanSurat = pengajuanSuratDb.findById(id).get();
-        return "delete";
+    public String deletePengajuanSurat(Integer id) {
+        PengajuanSuratModel pengajuanSurat = pengajuanSuratDb.getById(id);
+        if (pengajuanSurat.getStatus().equals("Menunggu Persetujuan")){
+            pengajuanSuratDb.delete(pengajuanSurat);
+//            System.out.println("Test masuk sini");
+            return "Delete";
+        }
+        return "Fail Delete";
     }
 
     @Override

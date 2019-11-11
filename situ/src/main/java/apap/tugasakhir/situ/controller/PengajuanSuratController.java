@@ -92,22 +92,14 @@ public class PengajuanSuratController {
         return "pengajuan-surat-response";
     }
 
+    //Menghapus pengajuan Surat yang ada pada daftar pengajuan Surat
+    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
+    private String deleteDiagnosis(@PathVariable(value = "id") Integer idPengajuanSurat, Model model) {
+        String hasilHapus = pengajuanSuratService.deletePengajuanSurat(idPengajuanSurat);
 
-
-
-//    //Menghapus penyakit yang ada pada daftar diagnosis SIPAS
-//    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
-//    private String deleteDiagnosis(@PathVariable(value = "id") Long idPengajuanSurat,
-//                                   Model model) {
-//        String hasilHapus = pengajuanSuratService.deleteDiagnosisPasien(idPengajuanSurat);
-//
-//        model.addAttribute("title", "Delete Diagnosis Penyakit");
-//
-//        //Cek apakah berhasil dihapus atau tidak
-//        if(hasilHapus.equals("delete")){
-//            return "delete-diagnosis-penyakit";
-//        }
-//        return "delete-fail";
-//    }
+        model.addAttribute("title", "Delete Pengajuan Surat");
+        model.addAttribute("hasil", hasilHapus);
+        return "delete-pengajuan-surat-response";
+    }
 
 }
