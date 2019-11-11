@@ -45,6 +45,7 @@ public class PengajuanSuratController {
             System.out.println("Test Masuk sini");
             listPengajuan = user.getListPengajuanSurat();
         }
+        model.addAttribute("username", user.getRole().getNama());
         model.addAttribute("listPengajuan", listPengajuan);
         model.addAttribute("title", "Daftar Pengajuan Surat");
         return "daftar-pengajuan-surat";
