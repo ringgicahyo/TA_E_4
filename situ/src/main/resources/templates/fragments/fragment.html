@@ -38,10 +38,11 @@
                     Pengajuan Surat
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<!--                    <a class="dropdown-item" th:href="@{'/daftar-pengajuan-surat' + ${#httpServletRequest.remoteUser}}">Menampilkan Data Pengajuan-->
-<!--                        Surat</a>-->
-                    <a class="dropdown-item" th:href="@{/daftar-pengajuan-surat}">Menampilkan Data Pengajuan Surat</a>
-                    <a class="dropdown-item" th:href="@{/menambah-pengajuan-surat}" >menambah Pengajuan Surat</a>
+                    <a class="dropdown-item"
+                       th:href="@{'/daftar-pengajuan-surat/' + ${#httpServletRequest.remoteUser}}">Menampilkan Data Pengajuan
+                        Surat</a>
+<!--                    <a class="dropdown-item" th:href="@{/daftar-pengajuan-surat}">Menampilkan Data Pengajuan Surat</a>-->
+                    <a class="dropdown-item" th:href="@{/pengajuan-surat/tambah}" >menambah Pengajuan Surat</a>
                 </div>
             </li>
 
