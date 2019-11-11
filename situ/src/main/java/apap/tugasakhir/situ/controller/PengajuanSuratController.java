@@ -27,11 +27,9 @@ public class PengajuanSuratController {
     @Autowired
     private UserService userService;
 
-    //URL daftar pengajuan surat atau beranda
+    //URL yang akan merujuk pada daftar pengajuan surat
     @RequestMapping(value="/daftar-pengajuan-surat/{username}", method = RequestMethod.GET)
     public String home(@PathVariable String username, Model model) {
-//    @RequestMapping(value="/daftar-pengajuan-surat", method = RequestMethod.GET)
-//    public String home(Model model) {
         UserModel user = userService.getUserByUsername(username);
         List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
         System.out.println(user.getRole().getNama().equals("Admin TU"));
@@ -39,7 +37,8 @@ public class PengajuanSuratController {
         System.out.println(user.getUsername());
 
         if(user.getRole().getNama().equals("Admin TU")){
-//            //Membuat list yang menampung objek semua pasien yang ada pada database
+
+            //Membuat list yang menampung objek semua pasien yang ada pada database
             listPengajuan = pengajuanSuratService.getListPengajuanSurat();
         }else {
             System.out.println("Test Masuk sini");
@@ -49,9 +48,7 @@ public class PengajuanSuratController {
         model.addAttribute("listPengajuan", listPengajuan);
         model.addAttribute("title", "Daftar Pengajuan Surat");
         return "daftar-pengajuan-surat";
-
     }
-
 
     //URL mapping yang digunakan untuk mengakses halaman form menambahkan pengajuan surat
     @RequestMapping(value = "/pengajuan-surat/tambah", method = RequestMethod.GET)
@@ -59,7 +56,6 @@ public class PengajuanSuratController {
 
         //Membuat objek yang nantinya berguna untuk menampung hasil value yang ada di html
         PengajuanSuratModel pengajuanSurat = new PengajuanSuratModel();
-
         List<JenisSuratModel> jenisSuratList = jenisSuratService.getListJenisSurat();
 
         model.addAttribute("jenisSuratList", jenisSuratList);
@@ -69,7 +65,7 @@ public class PengajuanSuratController {
         return "form-pengajuan-surat";
     }
 
-    //URL mapping yang digunakan untuk mensubmit form halaman add pasien
+    //URL mapping yang digunakan untuk mensubmit form halaman untuk menambah pengajuan surat
     @RequestMapping(value = "/pengajuan-surat/tambah/{username}", method = RequestMethod.POST)
     public String addPengajuanSuratSubmit(@PathVariable String username,
                                           @ModelAttribute PengajuanSuratModel pengajuanSurat,
@@ -78,22 +74,16 @@ public class PengajuanSuratController {
 
         pengajuanSurat.setNoSurat("0");
         pengajuanSurat.setTanggalDisetujui(null);
-        System.out.println(pengajuanSurat.getKeterangan());
+
         Date date = new Date();
         pengajuanSurat.setTanggalPengajuan(date);
 
         pengajuanSurat.setJenisSurat(jenisSurat);
-        System.out.println(pengajuanSurat.getJenisSurat());
-        System.out.println(pengajuanSurat.getTanggalPengajuan());
 
         pengajuanSurat.setStatus("Menunggu Persetujuan");
-        System.out.println(pengajuanSurat.getStatus());
 
-         UserModel user = userService.getUserByUsername(username);
-         pengajuanSurat.setUser(user);
-
-        System.out.println(pengajuanSurat.getUser());
-        System.out.println(pengajuanSurat.getIdJenisSurat());
+        UserModel user = userService.getUserByUsername(username);
+        pengajuanSurat.setUser(user);
 
         pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
         model.addAttribute("pengajuanSurat", pengajuanSurat);

@@ -26,8 +26,6 @@
                         <tr>
                             <th> No</th>
                             <th th:if="${username} == 'Admin TU'">Nama Pemohon</th>
-
-                            <!--                            <th> Nama Pemohon</th>-->
                             <th> Jenis Surat </th>
                             <th> Nomor Surat</th>
                             <th> Waktu Pengajuan </th>
@@ -39,8 +37,6 @@
                         <tr th:each="pengajuanSurat, iterationStatus : *{listPengajuan}">
                             <td th:text="${iterationStatus.count}"> </td>
                             <td th:if="${username} == 'Admin TU'" th:text="${pengajuanSurat.user.username}" ></td>
-
-                            <!--                            <td th:text="${pengajuanSurat.user.nama}"></td>-->
                             <td th:text="${pengajuanSurat.jenisSurat.nama}"></td>
                             <td th:text="${pengajuanSurat.noSurat}"></td>
                             <td th:text="${#dates.format(pengajuanSurat.tanggalPengajuan, 'dd-MM-yyyy')}"></td>
