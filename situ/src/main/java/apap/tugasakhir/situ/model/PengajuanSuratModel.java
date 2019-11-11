@@ -41,14 +41,17 @@ public class PengajuanSuratModel {
     @JsonIgnore
     private UserModel user;
 
-    @Transient
-    private Integer idJenisSurat;
-
     @ManyToOne
     @JoinColumn(name = "jenisSuratId", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisSuratModel jenisSurat;
+
+    @Transient
+    private Integer idJenisSurat;
+
+    @Transient
+    private String statusUpdate;
 
     public PengajuanSuratModel() {
     }
@@ -123,5 +126,13 @@ public class PengajuanSuratModel {
 
     public void setJenisSurat(JenisSuratModel jenisSurat) {
         this.jenisSurat = jenisSurat;
+    }
+
+    public String getStatusUpdate() {
+        return statusUpdate;
+    }
+
+    public void setStatusUpdate(String statusUpdate) {
+        this.statusUpdate = statusUpdate;
     }
 }
