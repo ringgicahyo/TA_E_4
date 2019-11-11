@@ -48,7 +48,10 @@
 <!--                                    <a th:href= "@{/daftar-pengajuan-surat}">-->
 <!--                                        <button class="btn btn-sm btn-primary">Detail</button>-->
 <!--                                    </a>-->
-                                    <a th:href= "@{/pengajuan-surat/ubah/}">
+                                    <a th:if="${username} == 'Kepala Sekolah'" th:href= "@{/pengajuan-surat/ubah/}">
+                                        <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i> Ubah</button>
+                                    </a>
+                                    <a th:if="${username} == 'Admin TU'" th:href= "@{/pengajuan-surat/ubah/}">
                                         <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i> Ubah</button>
                                     </a>
                                     <a th:href= "@{'/pengajuan-surat/hapus/' + ${pengajuanSurat.id}}">
