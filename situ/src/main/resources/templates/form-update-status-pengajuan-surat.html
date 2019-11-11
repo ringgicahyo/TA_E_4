@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:include="fragments/fragment  ::  css" th:remove="tag"></object>
+    <object th:include="fragments/fragment  ::  js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment  ::  navbar"></nav>
+<div class="container-fluid">
+    <div class="container">
+        <h1 class="text-center font-weight-bold mt-5" > Ubah Status Pengajuan Surat </h1>
+        <br><br><br>
+        <form th:action="@{'/pengajuan-surat/ubah/'+ ${id}}"
+              th:object="${pengajuanSurat}" method="POST">
+            Ubah Status:
+            <select th:if="${username} == 'Kepala Sekolah'" class="form-control" th:field="*{statusUpdate}">
+                <option th:value="Ditolak" th:text="Ditolak">
+                <option th:value="Disetujui" th:text="Disetujui">
+            </select>
+            <select th:if="${username} == 'Admin TU'" class="form-control" th:field="*{statusUpdate}">
+                <option th:value="Diproses" th:text= "Diproses">
+                <option th:value="Selesai" th:text="Selesai">
+            </select>
+            <br><br>
+            <button class="btn btn-primary">
+                <a style="color: white"> Submit </a>
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
