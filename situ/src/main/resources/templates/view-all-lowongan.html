@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>View All Lowongan</title>
-<!--    <object th:include="fragments/fragment :: css" th:remove="tag"></object>-->
-<!--    <object th:include="fragments/fragment :: js" th:remove="tag"></object>-->
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment  ::  navbar"></nav>
 <div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
     <h2 style="text-align: center; margin-bottom: 20px;">Sistem Informasi Tata Usaha</h2>
     <div class="row">
@@ -13,6 +14,9 @@
             <div class="card">
                 <div class="card-header bg-dark text-white">Daftar Lowongan</div>
                 <div class="card-body"></div>
+                <div th:if="${deleteStatus}" class="alert alert-success">
+                    <span th:text="${deleteMessage}"></span>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -29,21 +33,26 @@
                     <tr th:each="lowongan, iterationStatus : *{listLowongan}">
                         <td th:text="${iterationStatus.count}"></td>
                         <td><a th:href="@{/lowongan/view/{id}(id=${lowongan.id})}" th:text="${lowongan.judul}"></a></td>
-                        <td th:text="${lowongan.tanggalDibuka}"></td>
-                        <td th:text="${lowongan.tanggalDitutup}"></td>
+                        <td th:text="${#dates.format(lowongan.tanggalDibuka, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(lowongan.tanggalDitutup, 'yyyy-MM-dd')}"></td>
                         <td th:text="${lowongan.keterangan}"></td>
                         <td th:text="${lowongan.jumlah}"></td>
-                        <td th:text="${lowongan.jenisLowongan}"></td>
+                        <td th:text="${lowongan.jenisLowongan.nama}"></td>
                         <td>
                             <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
-                                <button class="btn btn-dark" type="submit">ubah</button>
+                                <button class="btn btn-info" type="submit">ubah</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/lowongan/delete/{id}(id=${lowongan.id})}">
+                                <button class="btn btn-danger" type="submit">hapus</button>
                             </form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <form th:action="@{/lowongan/tambah}" method="GET">
-                    <button class="btn btn-dark" type="submit" style="float: right; margin-bottom: 10px; margin-right: 20px;">Tambah Lowongan</button>
+                    <button class="btn btn-success" type="submit" style="float: right; margin-bottom: 10px; margin-right: 20px;">Tambah Lowongan</button>
                 </form>
             </div>
         </div>
