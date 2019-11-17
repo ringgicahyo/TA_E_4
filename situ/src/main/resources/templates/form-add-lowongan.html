@@ -6,54 +6,73 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment  ::  navbar"></nav>
 <div class="container-fluid" style="margin-top: 20px;">
-    <h3>Tambah Lowongan</h3>
-    <div th:if="${status}">
-        <span th:text="${message}" style="color: green"></span>
+    <div class="container py-3">
+        <div class="row">
+            <div class="mx-auto col-sm-7">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Tambah Lowongan</h4>
+                    </div>
+                    <div th:if="${status}" class="alert alert-success">
+                        <span th:text="${message}"></span>
+                    </div>
+                    <div class="card-body">
+                        <form class="form needs-validation" role="form" th:action="@{'/lowongan/tambah/' + ${#httpServletRequest.remoteUser}}" th:object="${lowongan}" method="POST">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="judulLowongan">Judul</label>
+                                <div class="col-lg-9">
+                                    <input th:type="text" class="form-control" id="judulLowongan" name="judul" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="tanggalDibuka">Tanggal Dibuka</label>
+                                <div class="col-lg-9">
+                                    <input th:type="date" class="form-control" id="tanggalDibuka" name="tanggalDibuka" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="tanggalDitutup">Tanggal Ditutup</label>
+                                <div class="col-lg-9">
+                                    <input th:type="date" class="form-control" id="tanggalDitutup" name="tanggalDitutup" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="keterangan">Keterangan</label>
+                                <div class="col-lg-9">
+                                    <input th:type="text" class="form-control" id="keterangan" name="keterangan" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="jumlah">Jumlah</label>
+                                <div class="col-lg-9">
+                                    <input th:type="number" class="form-control" id="jumlah" name="jumlah" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label" for="jenisLowongan">Jenis Lowongan</label>
+                                <div class="col-lg-9">
+                                    <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control" size="0" required>
+                                        <option th:value="0" selected> -- Pilih Jenis Lowongan -- </option>
+                                        <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <form th:action="@{/lowongan/tambah}" th:object="${lowongan}" method="POST">
-        <div class="form-group row">
-            <label for="judulLowongan" class="col-sm-2 col-form-label">Judul</label>
-            <div class="col-sm-2">
-                <input th:type="text" class="form-control" id="judulLowongan" name="judul">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="tanggalDibuka" class="col-sm-2 col-form-label">Tanggal Dibuka</label>
-            <div class="col-sm-2">
-                <input th:type="date" class="form-control" id="tanggalDibuka" name="tanggalDibuka">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="tanggalDitutup" class="col-sm-2 col-form-label">Tanggal Ditutup</label>
-            <div class="col-sm-2">
-                <input th:type="date" class="form-control" id="tanggalDitutup" name="tanggalDitutup">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
-            <div class="col-sm-2">
-                <input th:type="text" class="form-control" id="keterangan" name="keterangan">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
-            <div class="col-sm-2">
-                <input th:type="number" class="form-control" id="jumlah" name="jumlah">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="jenisLowongan" class="col-sm-2 col-form-label">Jenis Lowongan</label>
-            <div class="col-sm-2">
-                <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control">
-                    <option th:value="0" selected> -- Pilih Jenis Lowongan -- </option>
-                    <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
-                    </option>
-                </select>
-            </div>
-        </div>
-        <button class="btn btn-sm btn-primary" type="submit">Submit</button>
-    </form>
 </div>
 </body>
 </html>
