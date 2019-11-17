@@ -36,6 +36,9 @@ public class UserModel implements Serializable {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<PengajuanSuratModel> listPengajuanSurat;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<LowonganModel> listLowongan;
+
     public String getUuid() {
         return uuid;
     }
@@ -74,5 +77,13 @@ public class UserModel implements Serializable {
 
     public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
         this.listPengajuanSurat = listPengajuanSurat;
+    }
+
+    public List<LowonganModel> getListLowongan() {
+        return listLowongan;
+    }
+
+    public void setListLowongan(List<LowonganModel> listLowongan) {
+        this.listLowongan = listLowongan;
     }
 }
