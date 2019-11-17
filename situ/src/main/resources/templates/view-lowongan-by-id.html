@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Lowongan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<div class="card" style="width: 25rem; margin: 0 auto; float: none;">
+    <div class="card-header">
+        <h2>Detail Lowongan</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text" th:text="'Judul: ' + ${lowongan.judul}"></p>
+        <p class="card-text" th:text="'Tanggal Dibuka: ' + ${#dates.format(lowongan.tanggalDibuka, 'yyyy-MM-dd')}"></p>
+        <p class="card-text" th:text="'Tanggal Ditutup: ' + ${#dates.format(lowongan.tanggalDitutup, 'yyyy-MM-dd')}"></p>
+        <p class="card-text" th:text="'Keterangan: ' + ${lowongan.keterangan}"></p>
+        <p class="card-text" th:text="'Jumlah: ' + ${lowongan.jumlah}"></p>
+        <p class="card-text" th:text="'Jenis Lowongan: ' + ${lowongan.jenisLowongan.nama}"></p>
+        <form th:action="@{/lowongan/delete/{id}(id=${lowongan.id})}">
+            <button class="btn btn-danger" style="float:right;">hapus</button>
+        </form>
+        <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
+            <button class="btn btn-info" style="float:right; margin-right: 5px;">ubah</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
