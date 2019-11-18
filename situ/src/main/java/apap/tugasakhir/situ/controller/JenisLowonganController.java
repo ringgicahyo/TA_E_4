@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import apap.tugasakhir.situ.model.JenisLowonganModel;
 import apap.tugasakhir.situ.service.JenisLowonganService;
@@ -41,37 +42,19 @@ public class JenisLowonganController {
     
     return "redirect:/jenis-lowongan/add";
   }
+
+  @RequestMapping(value = "/jenis-lowongan/view-all", method = RequestMethod.GET)
+  public String viewAllJenisLowongan(Model model) {
+    model.addAttribute("jenisLowonganList", jenisLowonganService.getAllJenisLowongan());
+    return "view-all-jenis-lowongan";
+  }
+
+  @RequestMapping(value = "/jenis-lowongan/delete/{idJenisLowongan}", method = RequestMethod.POST)
+  public String viewAllJenisSurat(@PathVariable Integer idJenisLowongan, Model model, RedirectAttributes redirectAttributes) {     
+    JenisLowonganModel jenisLowongan = jenisLowonganService.getJenisLowongan(idJenisLowongan);
+    jenisLowonganService.deleteJenisLowongan(jenisLowongan);
+
+    redirectAttributes.addFlashAttribute("message", "Jenis lowongan dengan nama " + jenisLowongan.getNama() + " berhasil dihapus.");    
+    return "redirect:/jenis-lowongan/view-all";
+  }
 }
-
-// @Controller
-// public class JenisSuratController {
-
-//   @Autowired
-//   JenisSuratService jenisSuratService;
-
-//   @RequestMapping(value = "/jenis-surat/add", method = RequestMethod.GET)
-//   public String addJenisSuratForm(Model model) {
-//     JenisSuratModel jenisSurat = new JenisSuratModel();
-//     model.addAttribute("jenisSurat", jenisSurat);
-
-//     return "add-jenis-surat-form";
-//   }
-
-//   @RequestMapping(value = "/jenis-surat/add", method = RequestMethod.POST)
-//   public String addJenisSuratSubmit(@ModelAttribute JenisSuratModel jenisSurat, Model model, RedirectAttributes redirectAttributes){
-//     boolean addStatus = jenisSuratService.addJenisSurat(jenisSurat);
-
-//     //Jika gagal add
-//     if(!addStatus) {
-//       redirectAttributes.addFlashAttribute("message", "Maaf gagal menambahkan jenis surat dengan nama " + jenisSurat.getNama() + ". Mohon masukkan nama yang berbeda!");
-//       redirectAttributes.addFlashAttribute("status", false);
-//       return "redirect:/jenis-surat/add";
-//     }
-
-//     //Jika berhasil add
-//     redirectAttributes.addFlashAttribute("status", true);    
-//     redirectAttributes.addFlashAttribute("message", "Penambahan jenis surat dengan nama " + jenisSurat.getNama() + " berhasil!");      
-
-//     return "redirect:/jenis-surat/add";
-//   }
-// }

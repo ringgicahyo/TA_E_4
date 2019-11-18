@@ -40,4 +40,15 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
   public List<JenisLowonganModel> getAllJenisLowongan() {    
     return jenisLowonganDb.findAll();
   }
+
+  @Override
+  public JenisLowonganModel getJenisLowongan(Integer id) {    
+    return jenisLowonganDb.findById(id).get();
+  }
+
+  @Override
+  public boolean deleteJenisLowongan(JenisLowonganModel jenisLowongan) {
+    jenisLowonganDb.delete(jenisLowongan);
+    return true;
+  }
 }

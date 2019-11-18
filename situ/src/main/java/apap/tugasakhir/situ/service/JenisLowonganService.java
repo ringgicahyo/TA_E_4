@@ -11,4 +11,8 @@ public interface JenisLowonganService {
   boolean cekKesamaanNamaJenisLowongan(String nama);
 
   List<JenisLowonganModel> getAllJenisLowongan();
+
+  JenisLowonganModel getJenisLowongan(Integer id);
+
+  boolean deleteJenisLowongan(JenisLowonganModel jenisLowongan);
 }
