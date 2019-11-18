@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/daftar-pengajuan-surat").hasAnyAuthority(("Admin TU"))
                 .antMatchers("/lowongan/**").hasAnyAuthority(("Admin TU"))
+                .antMatchers("/jenis-surat/**").hasAnyAuthority(("Admin TU"))
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
