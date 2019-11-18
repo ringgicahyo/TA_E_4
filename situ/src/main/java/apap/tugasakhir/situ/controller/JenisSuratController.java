@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import  org.springframework.web.bind.annotation.PathVariable;
 
 import apap.tugasakhir.situ.model.JenisSuratModel;
 import apap.tugasakhir.situ.service.JenisSuratService;
@@ -42,4 +43,20 @@ public class JenisSuratController {
 
     return "redirect:/jenis-surat/add";
   }
+
+  @RequestMapping(value = "/jenis-surat/view-all", method = RequestMethod.GET)
+  public String viewAllJenisSurat(Model model) {
+    model.addAttribute("jenisSuratList", jenisSuratService.getListJenisSurat());
+    return "view-all-jenis-surat";
+  }
+
+  @RequestMapping(value = "/jenis-surat/delete/{idJenisSurat}", method = RequestMethod.POST)
+  public String viewAllJenisSurat(@PathVariable Integer idJenisSurat, Model model, RedirectAttributes redirectAttributes) {     
+    JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(idJenisSurat);
+    jenisSuratService.deleteJenisSurat(jenisSurat);
+
+    redirectAttributes.addFlashAttribute("message", "Jenis surat dengan nama " + jenisSurat.getNama() + " berhasil dihapus.");    
+    return "redirect:/jenis-surat/view-all";
+  }
+
 }

@@ -48,5 +48,9 @@ public class JenisSuratServiceImpl implements JenisSuratService {
     return jenisSuratDb.getById(id);
   }
 
-
+  @Override
+  public boolean deleteJenisSurat(JenisSuratModel jenisSurat) {
+    jenisSuratDb.delete(jenisSurat);
+    return true;
+  }
 }
