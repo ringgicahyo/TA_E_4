@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<div class="card" style="width: 25rem; margin: 0 auto; float: none;">
+    <div class="card-header">
+        <h2>Detail User Profile</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text" th:text="'Username: ' + ${loggedUser.username}"></p>
+        <p class="card-text" th:text="'Role: ' + ${loggedUser.role.nama}"></p>
+        <div th:if="${status}">
+            <p class="card-text" th:text="'NIP: ' + ${user.nip}"></p>
+            <p class="card-text" th:text="'Nama: ' + ${user.nama}"></p>
+            <p class="card-text" th:text="'Tempat Lahir: ' + ${user.tempatLahir}"></p>
+            <p class="card-text" th:text="'Tanggal Lahir: ' + ${#dates.format(user.tanggalLahir, 'yyyy-MM-dd')}"></p>
+            <p class="card-text" th:text="'Alamat: ' + ${user.alamat}"></p>
+            <p class="card-text" th:text="'Telepon: ' + ${user.telepon}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

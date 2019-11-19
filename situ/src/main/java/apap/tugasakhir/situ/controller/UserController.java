@@ -1,16 +1,23 @@
 package apap.tugasakhir.situ.controller;
 
 import apap.tugasakhir.situ.model.UserModel;
+import apap.tugasakhir.situ.rest.EmployeeDetail;
+import apap.tugasakhir.situ.rest.EmployeeDetailResponse;
 import apap.tugasakhir.situ.service.RoleService;
 import apap.tugasakhir.situ.service.UserService;
-import org.apache.coyote.Request;
+import apap.tugasakhir.situ.service.UserRestService;
+
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Controller
 @RequestMapping("/user")
@@ -20,6 +27,9 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private UserRestService userRestService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
@@ -103,5 +113,20 @@ public class UserController {
         model.addAttribute("error", "success");
         model.addAttribute("success", "Ganti password berhasil!");
         return "form-update-password";
+    }
+
+    @GetMapping(value = "/profile")
+    private String getUserProfile(Authentication authentication, Model model){
+        UserModel loggedUser = userService.getUserByUsername(authentication.getName());
+        try {
+            EmployeeDetailResponse userResponse = userRestService.getUserProfile(loggedUser.getUuid()).block();
+            EmployeeDetail user = userResponse.getResult();
+            model.addAttribute("status", true);
+            model.addAttribute("user", user);
+            model.addAttribute("loggedUser", loggedUser);
+        } catch (WebClientResponseException.NotFound exception){
+            model.addAttribute("loggedUser", loggedUser);
+        }
+        return "user-profile";
     }
 }
