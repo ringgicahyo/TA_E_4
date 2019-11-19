@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @RestController
 @RequestMapping("api/v1")
@@ -19,9 +19,16 @@ public class PengecekkanPengajuanSuratController {
     private PengecekkanPengajuanSuratService pengecekkanPengajuanSuratService;
 
     @GetMapping(value="/pengajuan-surat/{noSurat}")
-    private PengajuanSuratModel retrievePengajuanSurat(@PathVariable("noSurat") String noSurat) {
+    private Map<String, Object> retrievePengajuanSurat(@PathVariable("noSurat") String noSurat) {
         try {
-            return pengecekkanPengajuanSuratService.findPengajuanSurat(noSurat);
+            PengajuanSuratModel result = pengecekkanPengajuanSuratService.findPengajuanSurat(noSurat);
+
+            Map<String, Object> resultMap = new HashMap<String, Object>();
+            resultMap.put("Jenis Surat", result.getJenisSurat().getNama());
+            resultMap.put("Keterangan",  result.getKeterangan());
+            resultMap.put("Status", result.getStatus());
+            resultMap.put("User ID",  result.getUser().getUuid());
+            return resultMap;
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Nomor Surat " + String.valueOf(noSurat) + " Not Found!");
