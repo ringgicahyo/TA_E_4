@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 
 <head>
     <head th:fragment="css">
@@ -50,7 +51,8 @@
         </div>
     </div>
     <div class="navbar-nav pull-right">
-            <a class="nav-item nav-link active" th:href="@{/logout}">Logout</a>
+            <a sec:authorize="isAuthenticated()" class="nav-item nav-link active" th:href="@{/logout}">Log Out</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link active" th:href="@{/login}">Log In</a>
     </div>
 </nav>
 </body>
