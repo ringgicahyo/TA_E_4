@@ -24,4 +24,9 @@ public class PengecekkanPengajuanSuratServiceImpl implements PengecekkanPengajua
         }
     }
 
+    @Override
+    public PengajuanSuratModel createPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
+        return pengajuanSuratDb.save(pengajuanSurat);
+    }
+
 }

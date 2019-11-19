@@ -53,6 +53,9 @@ public class PengajuanSuratModel {
     @Transient
     private String statusUpdate;
 
+    @Transient
+    private String usernameUser;
+
     public PengajuanSuratModel() {
     }
 
@@ -135,4 +138,8 @@ public class PengajuanSuratModel {
     public void setStatusUpdate(String statusUpdate) {
         this.statusUpdate = statusUpdate;
     }
+
+    public String getUsernameUser() { return usernameUser; }
+
+    public void setUsernameUser(String usernameUser) { this.usernameUser = usernameUser; }
 }
