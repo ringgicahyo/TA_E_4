@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface PengajuanSuratDb extends JpaRepository<PengajuanSuratModel, Long> {
     PengajuanSuratModel getById(Integer id);
+    PengajuanSuratModel findByNoSurat(String noSurat);
 }
+
