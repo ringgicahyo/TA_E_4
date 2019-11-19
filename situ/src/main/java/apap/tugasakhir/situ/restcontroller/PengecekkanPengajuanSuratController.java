@@ -1,15 +1,18 @@
 package apap.tugasakhir.situ.restcontroller;
 
+import apap.tugasakhir.situ.model.JenisSuratModel;
 import apap.tugasakhir.situ.model.PengajuanSuratModel;
+import apap.tugasakhir.situ.model.UserModel;
+import apap.tugasakhir.situ.service.JenisSuratService;
 import apap.tugasakhir.situ.service.PengecekkanPengajuanSuratService;
+import apap.tugasakhir.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RestController
@@ -17,6 +20,10 @@ import java.util.*;
 public class PengecekkanPengajuanSuratController {
     @Autowired
     private PengecekkanPengajuanSuratService pengecekkanPengajuanSuratService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private JenisSuratService jenisSuratService;
 
     @GetMapping(value="/pengajuan-surat/{noSurat}")
     private Map<String, Object> retrievePengajuanSurat(@PathVariable("noSurat") String noSurat) {
@@ -32,6 +39,23 @@ public class PengecekkanPengajuanSuratController {
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Nomor Surat " + String.valueOf(noSurat) + " Not Found!");
+        }
+    }
+
+    @PostMapping(value = "/pengajuan-surat/add")
+    private PengajuanSuratModel createPengajuanSurat(@Valid @RequestBody PengajuanSuratModel pengajuanSurat,
+                                               BindingResult bindingResult) {
+        if(bindingResult.hasFieldErrors()) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field");
+        } else {
+            JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(pengajuanSurat.getIdJenisSurat());
+            pengajuanSurat.setJenisSurat(jenisSurat);
+
+            UserModel user = userService.getUserByUsername(pengajuanSurat.getUsernameUser());
+            pengajuanSurat.setUser(user);
+
+            return pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
         }
     }
 
