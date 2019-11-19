@@ -11,7 +11,7 @@ public class PengecekkanPengajuanSuratServiceImpl implements PengecekkanPengajua
     private PengajuanSuratDb pengajuanSuratDb;
 
     @Override
-    public PengajuanSuratModel getRestoranByIdRestoran(String noSurat){
+    public PengajuanSuratModel findPengajuanSurat(String noSurat){
         PengajuanSuratModel pengajuanSurat = pengajuanSuratDb.findByNoSurat(noSurat);
         if(pengajuanSurat != null){
             return pengajuanSurat;
