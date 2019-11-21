@@ -4,13 +4,14 @@ import apap.tugasakhir.situ.model.JenisSuratModel;
 import apap.tugasakhir.situ.model.PengajuanSuratModel;
 import apap.tugasakhir.situ.model.UserModel;
 import apap.tugasakhir.situ.service.JenisSuratService;
-import apap.tugasakhir.situ.service.PengecekkanPengajuanSuratService;
+import apap.tugasakhir.situ.restservice.PengecekkanPengajuanSuratService;
 import apap.tugasakhir.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -43,8 +44,8 @@ public class PengecekkanPengajuanSuratController {
     }
 
     @PostMapping(value = "/pengajuan-surat/add")
-    private PengajuanSuratModel createPengajuanSurat(@Valid @RequestBody PengajuanSuratModel pengajuanSurat,
-                                               BindingResult bindingResult) {
+    private String createPengajuanSurat(@Valid @RequestBody PengajuanSuratModel pengajuanSurat,
+                                               BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasFieldErrors()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field");
@@ -55,7 +56,14 @@ public class PengecekkanPengajuanSuratController {
             UserModel user = userService.getUserByUsername(pengajuanSurat.getUsernameUser());
             pengajuanSurat.setUser(user);
 
-            return pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
+            PengajuanSuratModel hasil = pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
+            if(hasil.getStatus().equals("Menunggu Persetujuan")) {
+                redirectAttributes.addFlashAttribute("message", "Telah terjadi error. Surat tidak bisa ditambahkan");
+            }
+            else {
+                redirectAttributes.addFlashAttribute("message", "Surat berhasil ditambahkan!");
+            }
+            return "redirect:/pengajuan-pinjaman";
         }
     }
 
