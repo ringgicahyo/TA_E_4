@@ -1,6 +1,7 @@
 package apap.tugasakhir.situ.controller;
 
 import apap.tugasakhir.situ.model.UserModel;
+import apap.tugasakhir.situ.rest.AddEmployeeResponse;
 import apap.tugasakhir.situ.rest.EmployeeDetail;
 import apap.tugasakhir.situ.rest.EmployeeDetailResponse;
 import apap.tugasakhir.situ.rest.SiPerpusUserDetailResponse;
@@ -9,6 +10,7 @@ import apap.tugasakhir.situ.service.SiPerpusUserService;
 import apap.tugasakhir.situ.service.UserService;
 import apap.tugasakhir.situ.service.UserRestService;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
@@ -61,6 +66,52 @@ public class UserController {
     private String addUserForm(Model model) {
         model.addAttribute("listRole", roleService.findAll());
         return "form-add-user";
+    }
+
+    @RequestMapping(value = "/add-employee", method = RequestMethod.POST)
+    private String addEmployeePost(@ModelAttribute UserModel user, HttpServletRequest httpRequest, Model model) {
+        String newPassword = user.getPassword();
+
+        boolean newPasswordValid = userService.checkPasswordValidity(newPassword);
+
+        if (!newPasswordValid) {
+            // Invalid new password.
+            model.addAttribute("error", "Password harus mengandung huruf, angka, dan minimal 8 karakter!");
+            model.addAttribute("listRole", roleService.findAll());
+            return "form-add-employee";
+        }
+
+        // Success.
+        UserModel newUser = userService.addUser(user);
+
+        // Start processing JSON to fire to SI-SIVITAS API.
+        JSONObject data = new JSONObject();
+        data.put("idUser", newUser.getUuid());
+        data.put("nip", "");
+        data.put("nama", httpRequest.getParameter("nama"));
+        data.put("tempatLahir", httpRequest.getParameter("tempatLahir"));
+        data.put("tanggalLahir", httpRequest.getParameter("tanggalLahir"));
+        data.put("alamat", httpRequest.getParameter("alamat"));
+        data.put("telepon", httpRequest.getParameter("telepon"));
+
+        Mono<AddEmployeeResponse> response = userRestService.postAddEmployee(data);
+
+        // Check response status code.
+        // Error (400)
+        if (response.block().getStatus().equals("400")) {
+            model.addAttribute("error", "Terdapat kesalahan data!");
+            return "form-add-employee";
+        }
+
+        // Success (200)
+        model.addAttribute("error", "success");
+        return "form-add-employee";
+    }
+
+    @RequestMapping(value = "/add-employee", method = RequestMethod.GET)
+    private String addEmployeeForm(Model model) {
+        model.addAttribute("listRole", roleService.findAll());
+        return "form-add-employee";
     }
 
     @RequestMapping(value = "/updatePassword", method = RequestMethod.GET)

@@ -9,33 +9,36 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">Tambah User Baru</div>
-            <div class="card-body">
-                <form th:action="@{/user/addUser}" method="POST">
-                    <p th:text="${error} == 'success' ? 'Pembuatan akun berhasil!' : ${error}"></p>
-                    <label>User Name</label>
-                    <input type="text" name="username" class="form-control"/>
+<div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Tambah User Baru</h2>
+    <div class="row">
+        <div class="container">
+            <div class="card" style="width: 34rem; margin: auto;">
+                <div class="card-header bg-dark text-white">Tambah User Baru</div>
+                <div class="card-body">
+                    <form th:action="@{/user/addUser}" method="POST">
+                        <p th:text="${error} == 'success' ? 'Pembuatan akun berhasil!' : ${error}"></p>
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control"/>
 
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control">
 
-                    <label>Role</label>
-                    <select name="role" class="form-control">
-                        <option selected value="">-- Pilih Role --</option>
-                        <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
-                    </select>
+                        <label>Role</label>
+                        <select name="role" class="form-control">
+                            <option selected value="">-- Pilih Role --</option>
+                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
+                        </select>
 
-                    <br>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
+                        <br>
+                        <div class="row form-group">
+                            <button type="submit" class="btn btn-dark" style="margin: auto;">Simpan</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
 </body>
 </html>
