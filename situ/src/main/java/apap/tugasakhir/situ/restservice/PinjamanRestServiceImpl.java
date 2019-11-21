@@ -18,10 +18,10 @@ public class PinjamanRestServiceImpl implements PinjamanRestService{
   }
 
   public PinjamanDetail pengajuanPinjamanPost(PinjamanDetail pinjaman) {
-    // MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
-    // data.add("idAnggota", pinjaman.getIdAnggota().toString());    
-    // data.add("tanggalPengajuan", pinjaman.getTanggalPengajuan().toString());    
-    // data.add("jumlahPinjaman", pinjaman.getJumlahPinjaman().toString());
-    return this.webClient.post().uri("pinjaman/add-pinjaman").bodyValue(pinjaman).retrieve().bodyToMono(PinjamanDetail.class).block();
+    MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
+    data.add("idAnggota", pinjaman.getIdAnggota().toString());    
+    data.add("tanggalPengajuan", pinjaman.getTanggalPengajuan().toString());    
+    data.add("jumlahPinjaman", pinjaman.getJumlahPinjaman().toString());
+    return this.webClient.post().uri("pinjaman/add-pinjaman").header("Content-Type", "application/json").bodyValue(data).retrieve().bodyToMono(PinjamanDetail.class).block();
   }
 }

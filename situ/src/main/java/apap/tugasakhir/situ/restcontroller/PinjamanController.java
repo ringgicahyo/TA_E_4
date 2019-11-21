@@ -27,8 +27,14 @@ public class PinjamanController {
 
   @RequestMapping(value = "/pengajuan-pinjaman", method = RequestMethod.POST)
   public String pengajuanPinjamanSubmit(@ModelAttribute PinjamanDetail pinjamanDetail, Model model, RedirectAttributes redirectAttributes) {    
-    System.out.println(pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail));
-    redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan!");
+    PinjamanDetail postPinjaman = pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail);
+
+    if(postPinjaman.getStatus() == 400) {
+      redirectAttributes.addFlashAttribute("message", "Mohon maaf. Telah terjadi error.");
+    }
+    else {
+      redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan!");
+    }    
     return "redirect:/pengajuan-pinjaman";
   }
 }
