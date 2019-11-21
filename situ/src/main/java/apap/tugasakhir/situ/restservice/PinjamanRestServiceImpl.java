@@ -1,11 +1,15 @@
 package apap.tugasakhir.situ.restservice;
 
+import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import apap.tugasakhir.situ.rest.Setting;
 import apap.tugasakhir.situ.rest.PinjamanDetail;
 
-public class PinjamanRestServiceImpl {
+@Service
+public class PinjamanRestServiceImpl implements PinjamanRestService{
 
   private final WebClient webClient;
 
@@ -14,6 +18,10 @@ public class PinjamanRestServiceImpl {
   }
 
   public PinjamanDetail pengajuanPinjamanPost(PinjamanDetail pinjaman) {
-    return this.webClient.post().uri("/arg0").bodyValue(pinjaman).retrieve().bodyToMono(PinjamanDetail.class).block();
+    // MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
+    // data.add("idAnggota", pinjaman.getIdAnggota().toString());    
+    // data.add("tanggalPengajuan", pinjaman.getTanggalPengajuan().toString());    
+    // data.add("jumlahPinjaman", pinjaman.getJumlahPinjaman().toString());
+    return this.webClient.post().uri("pinjaman/add-pinjaman").bodyValue(pinjaman).retrieve().bodyToMono(PinjamanDetail.class).block();
   }
 }
