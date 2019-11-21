@@ -6,12 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EmployeeDetail {
+public class LoggedUserDetail {
     @JsonProperty("idUser")
     private String idUser;
 
     @JsonProperty("nip")
     private String nip;
+
+    @JsonProperty("nis")
+    private String nis;
+
+    @JsonProperty("nig")
+    private String nig;
 
     @JsonProperty("nama")
     private String nama;

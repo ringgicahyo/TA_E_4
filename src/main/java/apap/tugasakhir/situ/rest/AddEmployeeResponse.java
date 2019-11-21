@@ -12,7 +12,7 @@ public class AddEmployeeResponse {
     private String message;
 
     @JsonProperty("result")
-    private EmployeeDetail result;
+    private LoggedUserDetail result;
 
     public String getStatus() {
         return status;
@@ -30,11 +30,11 @@ public class AddEmployeeResponse {
         this.message = message;
     }
 
-    public EmployeeDetail getResult() {
+    public LoggedUserDetail getResult() {
         return result;
     }
 
-    public void setResult(EmployeeDetail result) {
+    public void setResult(LoggedUserDetail result) {
         this.result = result;
     }
 }
