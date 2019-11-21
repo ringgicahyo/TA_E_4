@@ -2,8 +2,8 @@ package apap.tugasakhir.situ.controller;
 
 import apap.tugasakhir.situ.model.UserModel;
 import apap.tugasakhir.situ.rest.AddEmployeeResponse;
-import apap.tugasakhir.situ.rest.EmployeeDetail;
-import apap.tugasakhir.situ.rest.EmployeeDetailResponse;
+import apap.tugasakhir.situ.rest.LoggedUserDetail;
+import apap.tugasakhir.situ.rest.LoggedUserDetailResponse;
 import apap.tugasakhir.situ.rest.SiPerpusUserDetailResponse;
 import apap.tugasakhir.situ.service.RoleService;
 import apap.tugasakhir.situ.service.SiPerpusUserService;
@@ -173,12 +173,27 @@ public class UserController {
     @GetMapping(value = "/profile")
     private String getUserProfile(Authentication authentication, Model model){
         UserModel loggedUser = userService.getUserByUsername(authentication.getName());
+        String role = loggedUser.getRole().getNama();
         try {
-            EmployeeDetailResponse userResponse = userRestService.getUserProfile(loggedUser.getUuid()).block();
-            EmployeeDetail user = userResponse.getResult();
-            model.addAttribute("status", true);
-            model.addAttribute("user", user);
-            model.addAttribute("loggedUser", loggedUser);
+            if (role.equals("Kepala Sekolah") || role.equals("Admin TU")){
+                LoggedUserDetailResponse userResponse = userRestService.getUserProfileForEmployee(loggedUser.getUuid()).block();
+                LoggedUserDetail user = userResponse.getResult();
+                model.addAttribute("status", true);
+                model.addAttribute("user", user);
+                model.addAttribute("loggedUser", loggedUser);
+            } else if (role.equals("Guru")){
+                LoggedUserDetailResponse userResponse = userRestService.getUserProfileForTeacher(loggedUser.getUuid()).block();
+                LoggedUserDetail user = userResponse.getResult();
+                model.addAttribute("status", true);
+                model.addAttribute("user", user);
+                model.addAttribute("loggedUser", loggedUser);
+            } else if (role.equals("Siswa")){
+                LoggedUserDetailResponse userResponse = userRestService.getUserProfileForStudent(loggedUser.getUuid()).block();
+                LoggedUserDetail user = userResponse.getResult();
+                model.addAttribute("status", true);
+                model.addAttribute("user", user);
+                model.addAttribute("loggedUser", loggedUser);
+            }
         } catch (WebClientResponseException.NotFound exception){
             model.addAttribute("loggedUser", loggedUser);
         }
