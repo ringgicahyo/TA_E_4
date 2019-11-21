@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EmployeeDetailResponse {
+public class LoggedUserDetailResponse {
     @JsonProperty("status")
     private String status;
 
@@ -12,7 +12,7 @@ public class EmployeeDetailResponse {
     private String message;
 
     @JsonProperty("result")
-    private EmployeeDetail result;
+    private LoggedUserDetail result;
 
     public String getStatus() {
         return status;
@@ -30,11 +30,11 @@ public class EmployeeDetailResponse {
         this.message = message;
     }
 
-    public EmployeeDetail getResult() {
+    public LoggedUserDetail getResult() {
         return result;
     }
 
-    public void setResult(EmployeeDetail result) {
+    public void setResult(LoggedUserDetail result) {
         this.result = result;
     }
 }
