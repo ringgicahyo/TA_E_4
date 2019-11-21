@@ -3,11 +3,12 @@ package apap.tugasakhir.situ.controller;
 import apap.tugasakhir.situ.model.UserModel;
 import apap.tugasakhir.situ.rest.EmployeeDetail;
 import apap.tugasakhir.situ.rest.EmployeeDetailResponse;
+import apap.tugasakhir.situ.rest.SiPerpusUserDetailResponse;
 import apap.tugasakhir.situ.service.RoleService;
+import apap.tugasakhir.situ.service.SiPerpusUserService;
 import apap.tugasakhir.situ.service.UserService;
 import apap.tugasakhir.situ.service.UserRestService;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     private UserRestService userRestService;
+
+    @Autowired
+    private SiPerpusUserService siPerpusUserService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
@@ -128,5 +132,12 @@ public class UserController {
             model.addAttribute("loggedUser", loggedUser);
         }
         return "user-profile";
+    }
+
+    @GetMapping(value = "/siperpus")
+    private String getSiPerpusUser(Model model){
+        SiPerpusUserDetailResponse siPerpusUser = siPerpusUserService.getSiPerpusUser().block();
+        model.addAttribute("siPerpusUser", siPerpusUser.getResult());
+        return "siperpus-user";
     }
 }
