@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
-
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <head th:fragment="css">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -9,7 +8,7 @@
             .dropdown:hover>.dropdown-menu {
                 display: block;
             }
-            .dropdown > .dropdown-toggle:active {
+            .dropdown >.dropdown-toggle:active {
                 pointer-events: none;
             }
         </style>
@@ -25,19 +24,17 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <!--    <a class="navbar-brand" href="#" th:text="${title}"></a>-->
     <a class="navbar-brand" th:href="@{/}" >SI-TU</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggle-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+        <div class="navbar-nav" sec:authorize="isAuthenticated()">
             <a class="nav-item nav-link active" th:href="@{/}"> Home <span class="sr-only">(current)</span></a>
             <li class="nav-item dropdown">
                 <a class="nav-link active dropdown-toggle" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pengajuan Surat</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                     <a class="dropdown-item" th:href="@{'/daftar-pengajuan-surat/' + ${#httpServletRequest.remoteUser}}">Menampilkan Data Pengajuan Surat</a>
-<!--                    <a class="dropdown-item" th:href="@{/daftar-pengajuan-surat}">Menampilkan Data Pengajuan Surat</a>-->
                     <a class="dropdown-item" th:href="@{/pengajuan-surat/tambah}" >Menambah Pengajuan Surat</a>
                 </div>
             </li>
@@ -51,8 +48,9 @@
         </div>
     </div>
     <div class="navbar-nav pull-right">
-            <a sec:authorize="isAuthenticated()" class="nav-item nav-link active" th:href="@{/logout}">Log Out</a>
-            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link active" th:href="@{/login}">Log In</a>
+        <a sec:authorize="isAuthenticated()" class="nav-item nav-link active" th:href="@{/user/profile}">Profile</a>
+        <a sec:authorize="isAuthenticated()" class="nav-item nav-link active" th:href="@{/logout}">Log Out</a>
+        <a sec:authorize="!isAuthenticated()" class="nav-item nav-link active" th:href="@{/login}">Log In</a>
     </div>
 </nav>
 </body>
