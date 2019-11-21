@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/daftar-pengajuan-surat").hasAnyAuthority(("Admin TU"))
@@ -27,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/jenis-surat/**").hasAnyAuthority(("Admin TU"))
                 .antMatchers("/jenis-lowongan/**").hasAnyAuthority(("Admin TU"))
                 .antMatchers("/pengajuan-peminjaman").hasAnyAuthority(("Admin TU"))
+                .antMatchers("/user/add-employee").hasAnyAuthority(("Admin TU"))
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
