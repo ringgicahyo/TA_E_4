@@ -1,4 +1,4 @@
-package apap.tugasakhir.situ.service;
+package apap.tugasakhir.situ.restservice;
 
 import apap.tugasakhir.situ.model.PengajuanSuratModel;
 import apap.tugasakhir.situ.repository.PengajuanSuratDb;
