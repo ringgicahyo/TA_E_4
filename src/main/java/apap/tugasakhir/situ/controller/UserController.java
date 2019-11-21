@@ -175,13 +175,13 @@ public class UserController {
         UserModel loggedUser = userService.getUserByUsername(authentication.getName());
         String role = loggedUser.getRole().getNama();
         try {
-            if (role.equals("Kepala Sekolah") || role.equals("Admin TU")){
+            if (role.equals("Admin TU")){
                 LoggedUserDetailResponse userResponse = userRestService.getUserProfileForEmployee(loggedUser.getUuid()).block();
                 LoggedUserDetail user = userResponse.getResult();
                 model.addAttribute("status", true);
                 model.addAttribute("user", user);
                 model.addAttribute("loggedUser", loggedUser);
-            } else if (role.equals("Guru")){
+            } else if (role.equals("Kepala Sekolah") || role.equals("Guru")){
                 LoggedUserDetailResponse userResponse = userRestService.getUserProfileForTeacher(loggedUser.getUuid()).block();
                 LoggedUserDetail user = userResponse.getResult();
                 model.addAttribute("status", true);
