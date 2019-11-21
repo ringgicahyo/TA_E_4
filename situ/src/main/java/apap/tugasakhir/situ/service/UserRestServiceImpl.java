@@ -18,6 +18,4 @@ public class UserRestServiceImpl implements UserRestService {
     public Mono<EmployeeDetailResponse> getUserProfile(String uuid) {
         return this.webClient.get().uri("/api/employees/" + uuid).retrieve().bodyToMono(EmployeeDetailResponse.class);
     }
-
-
 }

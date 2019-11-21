@@ -7,4 +7,5 @@ import reactor.core.publisher.Mono;
 @Service
 public interface UserRestService {
     Mono<EmployeeDetailResponse> getUserProfile(String uuid);
+
 }

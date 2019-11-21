@@ -36,13 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
 
-//    @Autowired
-//    public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(encoder())
-//                .withUser("nadiem").password(encoder().encode("makarim"))
-//                .roles("SISWA");
-//    }
     @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
