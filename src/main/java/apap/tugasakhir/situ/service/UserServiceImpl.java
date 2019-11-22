@@ -60,6 +60,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public void deleteUser(UserModel user) {
+        userDb.delete(user);
+    }
+
 // import org.springframework.stereotype.Service;
 
 // import javax.transaction.Transactional;

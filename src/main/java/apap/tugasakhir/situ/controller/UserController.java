@@ -99,6 +99,8 @@ public class UserController {
         // Check response status code.
         // Error (400)
         if (response.block().getStatus().equals("400")) {
+            userService.deleteUser(newUser);
+
             model.addAttribute("error", "Terdapat kesalahan data!");
             return "form-add-employee";
         }

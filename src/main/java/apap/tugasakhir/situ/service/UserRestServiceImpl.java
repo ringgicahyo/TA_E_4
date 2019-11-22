@@ -43,8 +43,6 @@ public class UserRestServiceImpl implements UserRestService {
         // Add NIP.
         data.put("nip", nip);
 
-        System.out.println(data.toString());
-
         return this.webClient.post().uri("http://sivitas.herokuapp.com/api/employees")
                 .header("Content-Type", "application/json")
                 .bodyValue(data.toString())
