@@ -30,7 +30,10 @@ public class PinjamanController {
     PinjamanDetail postPinjaman = pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail);
 
     if(postPinjaman.getStatus() == 400) {
-      redirectAttributes.addFlashAttribute("message", "Mohon maaf. Telah terjadi error.");
+      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error (Bad Request).");
+    }
+    else if(postPinjaman.getStatus() == 404) {
+      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error (ID Anggota tidak dapat ditemukan).");
     }
     else {
       redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan!");

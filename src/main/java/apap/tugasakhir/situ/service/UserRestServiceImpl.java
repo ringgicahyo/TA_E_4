@@ -1,7 +1,7 @@
 package apap.tugasakhir.situ.service;
 
 import apap.tugasakhir.situ.rest.AddEmployeeResponse;
-import apap.tugasakhir.situ.rest.EmployeeDetailResponse;
+import apap.tugasakhir.situ.rest.LoggedUserDetailResponse;
 import apap.tugasakhir.situ.rest.Setting;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -19,8 +19,18 @@ public class UserRestServiceImpl implements UserRestService {
     }
 
     @Override
-    public Mono<EmployeeDetailResponse> getUserProfile(String uuid) {
-        return this.webClient.get().uri("/api/employees/" + uuid).retrieve().bodyToMono(EmployeeDetailResponse.class);
+    public Mono<LoggedUserDetailResponse> getUserProfileForEmployee(String uuid) {
+        return this.webClient.get().uri("/api/employees/" + uuid).retrieve().bodyToMono(LoggedUserDetailResponse.class);
+    }
+
+    @Override
+    public Mono<LoggedUserDetailResponse> getUserProfileForTeacher(String uuid) {
+        return this.webClient.get().uri("/api/teachers/" + uuid).retrieve().bodyToMono(LoggedUserDetailResponse.class);
+    }
+
+    @Override
+    public Mono<LoggedUserDetailResponse> getUserProfileForStudent(String uuid) {
+        return this.webClient.get().uri("/api/students/" + uuid).retrieve().bodyToMono(LoggedUserDetailResponse.class);
     }
 
     @Override
