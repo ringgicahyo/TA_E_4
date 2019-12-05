@@ -28,8 +28,9 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService{
         return pengajuanSuratDb.getById(id);
     }
     @Override
-    public PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
-        return pengajuanSuratDb.save(pengajuanSurat);
+    public String addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
+        pengajuanSuratDb.save(pengajuanSurat);
+        return "Berhasil tambah";
     }
 
     @Override
@@ -48,8 +49,6 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService{
         PengajuanSuratModel targetUbah = pengajuanSuratDb.getById(pengajuanSurat.getId());
 
         try{
-            System.out.println("test : " + pengajuanSurat.getStatusUpdate());
-
             if(pengajuanSurat.getStatusUpdate().equals("Disetujui")){
                 Date date = new Date();
                 targetUbah.setTanggalDisetujui(date);
