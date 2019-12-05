@@ -10,25 +10,25 @@
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div th:replace="fragments/fragment :: navbar-header"></div>
     <div th:replace="fragments/fragment :: ui-theme-settings"></div>
-<!--    <div class="app-main">-->
-<!--        <div th:replace="fragments/fragment :: navbar-sidebar"></div>-->
-<!--        &lt;!&ndash; CONTENT GOES HERE &ndash;&gt;-->
-<!--        <div class="app-main__outer">-->
-<!--            <div class="app-main__inner">-->
-<!--                <div class="app-page-title">-->
-<!--                    <div class="page-title-wrapper">-->
-<!--                        <div class="page-title-heading">-->
-<!--                            <div class="page-title-icon">-->
-<!--                                <i class="pe-7s-display1 icon-gradient bg-premium-dark">-->
-<!--                                </i>-->
-<!--                            </div>-->
-<!--                            <div>Form Tambah Lowongan-->
-<!--                                <div class="page-title-subheading">Form ini digunakan untuk menambahkan lowongan dengan jenis yang ada.-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                </i>
+                            </div>
+                            <div>Form Tambah Lowongan
+                                <div class="page-title-subheading">Form ini digunakan untuk menambahkan lowongan dengan jenis yang ada.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 <!--                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">-->
 <!--                    <li class="nav-item">-->
 <!--                        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">-->
@@ -36,56 +36,57 @@
 <!--                        </a>-->
 <!--                    </li>-->
 <!--                </ul>-->
-<!--                <div class="tab-content">-->
-<!--                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">-->
-<!--                        <div th:if="${status}" class="alert alert-success">-->
-<!--                            <span th:text="${message}"></span>-->
-<!--                        </div>-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-md-6">-->
-<!--                                <div class="main-card mb-3 card">-->
-<!--                                    <div class="card-body"><h5 class="card-title">Form Tambah Lowongan</h5>-->
-<!--                                        <form class="form needs-validation" role="form" th:action="@{'/lowongan/tambah/' + ${#httpServletRequest.remoteUser}}" th:object="${lowongan}" method="POST">-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="judulLowongan" class="">Judul</label>-->
-<!--                                                <input name="judul" id="judulLowongan" placeholder="Judul Lowongan" type="text" class="form-control" required>-->
-<!--                                            </div>-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="tanggalDibuka" class="">Tanggal Dibuka</label>-->
-<!--                                                <input name="tanggalDibuka" id="tanggalDibuka" placeholder="" type="date" class="form-control" required>-->
-<!--                                            </div>-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="tanggalDitutup" class="">Tanggal Ditutup</label>-->
-<!--                                                <input name="tanggalDitutup" id="tanggalDitutup" placeholder="" type="date" class="form-control" required>-->
-<!--                                            </div>-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="keterangan" class="">Keterangan</label>-->
-<!--                                                <input name="keterangan" id="keterangan" placeholder="Keterangan" type="text" class="form-control" required>-->
-<!--                                            </div>-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="jumlah" class="">Jumlah</label>-->
-<!--                                                <input name="jumlah" id="jumlah" placeholder="" type="number" class="form-control" required>-->
-<!--                                            </div>-->
-<!--                                            <div class="position-relative form-group">-->
-<!--                                                <label for="jenisLowongan" class="">Jenis Lowongan</label>-->
-<!--                                                <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control" size="0" required>-->
-<!--                                                    <option th:value="0" selected> &#45;&#45; Pilih Jenis Lowongan &#45;&#45; </option>-->
-<!--                                                    <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">-->
-<!--                                                    </option>-->
-<!--                                                </select>-->
-<!--                                            </div>-->
-<!--                                            <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">-->
-<!--                                            <button type="submit" class="mt-1 btn btn-primary">Tambah</button>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+                <div class="tab-content">
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div th:if="${status}" class="alert alert-success">
+                            <span th:text="${message}"></span>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">Form Tambah Lowongan</h5>
+                                        <form class="form needs-validation" role="form" th:action="@{'/lowongan/tambah/' + ${#httpServletRequest.remoteUser}}" th:object="${lowongan}" method="POST">
+                                            <div class="position-relative form-group">
+                                                <label for="judulLowongan" class="">Judul</label>
+                                                <input name="judul" id="judulLowongan" placeholder="Judul Lowongan" type="text" class="form-control" required>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="tanggalDibuka" class="">Tanggal Dibuka</label>
+                                                <input name="tanggalDibuka" id="tanggalDibuka" placeholder="" type="date" class="form-control" required>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="tanggalDitutup" class="">Tanggal Ditutup</label>
+                                                <input name="tanggalDitutup" id="tanggalDitutup" placeholder="" type="date" class="form-control" required>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="keterangan" class="">Keterangan</label>
+                                                <input name="keterangan" id="keterangan" placeholder="Keterangan" type="text" class="form-control" required>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="jumlah" class="">Jumlah</label>
+                                                <input name="jumlah" id="jumlah" placeholder="" type="number" class="form-control" required>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="jenisLowongan" class="">Jenis Lowongan</label>
+                                                <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control" size="0" required>
+                                                    <option th:value="0" selected> -- Pilih Jenis Lowongan -- </option>
+                                                    <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                                            <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script th:replace="fragments/fragment :: script"></script>
 </div>
 </body>

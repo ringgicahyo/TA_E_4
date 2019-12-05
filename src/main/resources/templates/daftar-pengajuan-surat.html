@@ -49,8 +49,8 @@
                                     <tbody>
                                     <tr th:each="pengajuanSurat, iterationStatus : *{listPengajuan}">
                                         <td class="text-center" th:text="${iterationStatus.count}"> </td>
-                                        <td class="text-center" th:if="${username} == 'Admin TU'" th:text="${pengajuanSurat.user.username}" ></td>
-                                        <td class="text-center" th:if="${username} == 'Kepala Sekolah'" th:text="${pengajuanSurat.user.username}" ></td>
+                                        <td th:if="${username} == 'Admin TU'" th:text="${pengajuanSurat.user.username}" ></td>
+                                        <td th:if="${username} == 'Kepala Sekolah'" th:text="${pengajuanSurat.user.username}" ></td>
                                         <td class="text-center" th:text="${pengajuanSurat.jenisSurat.nama}"></td>
                                         <td class="text-center" th:text="${pengajuanSurat.noSurat}"></td>
                                         <td class="text-center" th:text="${#dates.format(pengajuanSurat.tanggalPengajuan, 'dd-MM-yyyy')}"></td>

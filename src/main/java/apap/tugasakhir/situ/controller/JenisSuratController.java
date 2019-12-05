@@ -54,7 +54,7 @@ public class JenisSuratController {
   public String viewAllJenisSurat(@PathVariable Integer idJenisSurat, Model model, RedirectAttributes redirectAttributes) {     
     JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(idJenisSurat);
     jenisSuratService.deleteJenisSurat(jenisSurat);
-
+    redirectAttributes.addFlashAttribute("status", true);
     redirectAttributes.addFlashAttribute("message", "Jenis surat dengan nama " + jenisSurat.getNama() + " berhasil dihapus.");    
     return "redirect:/jenis-surat/view-all";
   }
