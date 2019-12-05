@@ -58,10 +58,10 @@ public class PengecekkanPengajuanSuratController {
 
             PengajuanSuratModel hasil = pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
             if(hasil.getStatus().equals("Menunggu Persetujuan")) {
-                redirectAttributes.addFlashAttribute("message", "Telah terjadi error. Surat tidak bisa ditambahkan");
+                redirectAttributes.addFlashAttribute("message", "Gagal");
             }
             else {
-                redirectAttributes.addFlashAttribute("message", "Surat berhasil ditambahkan!");
+                redirectAttributes.addFlashAttribute("message", "Berhasil");
             }
             return "redirect:/pengajuan-pinjaman";
         }
