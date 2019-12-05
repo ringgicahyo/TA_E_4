@@ -55,13 +55,14 @@ public class PengecekkanPengajuanSuratController {
 
             UserModel user = userService.getUserByUsername(pengajuanSurat.getUsernameUser());
             pengajuanSurat.setUser(user);
+            pengajuanSurat.setStatus("Menunggu Persetujuan");
 
             PengajuanSuratModel hasil = pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
             if(hasil.getStatus().equals("Menunggu Persetujuan")) {
-                redirectAttributes.addFlashAttribute("message", "Gagal");
+                redirectAttributes.addFlashAttribute("message", "Berhasil");
             }
             else {
-                redirectAttributes.addFlashAttribute("message", "Berhasil");
+                redirectAttributes.addFlashAttribute("message", "Gagal");
             }
             return "redirect:/pengajuan-pinjaman";
         }
