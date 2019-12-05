@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/daftar-pengajuan-surat").hasAnyAuthority(("Admin TU"))
                 .antMatchers("/lowongan/**").hasAnyAuthority(("Admin TU"))
                 .antMatchers("/jenis-surat/**").hasAnyAuthority(("Admin TU"))

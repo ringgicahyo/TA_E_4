@@ -4,9 +4,18 @@
 <head>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div th:replace="fragments/fragment :: navbar-header"></div>
+    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+    </div>
+    <script th:replace="fragments/fragment :: script"></script>
+</div>
 </body>
 </html>
