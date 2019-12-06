@@ -33,12 +33,16 @@ public class PinjamanController {
     try {      
       PinjamanDetail postPinjaman = pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail);      
       redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan dengan jumlah pinjaman " + postPinjaman.getJumlahPinjaman() + " atas ID Anggota " + postPinjaman.getIdAnggota());
+      redirectAttributes.addFlashAttribute("status", true);
     } catch(WebClientResponseException.NotFound error) {      
-      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 404 (ID Anggota tidak dapat ditemukan).");      
+      redirectAttributes.addFlashAttribute("message", "Mohon maaf. Telah terjadi error 404 (ID Anggota tidak dapat ditemukan).");      
+      redirectAttributes.addFlashAttribute("status", false);
     } catch(WebClientResponseException.BadRequest error) {      
-      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 400 (Bad Request).");      
+      redirectAttributes.addFlashAttribute("message", "Mohon maaf. Telah terjadi error 400 (Bad Request).");      
+      redirectAttributes.addFlashAttribute("status", false);
     } catch(WebClientResponseException.InternalServerError error) {
-      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 500 (Internal Server Error).");      
+      redirectAttributes.addFlashAttribute("message", "Mohon maaf. Telah terjadi error 500 (Internal Server Error).");      
+      redirectAttributes.addFlashAttribute("status", false);
     }
     return "redirect:/pengajuan-pinjaman";
   }
