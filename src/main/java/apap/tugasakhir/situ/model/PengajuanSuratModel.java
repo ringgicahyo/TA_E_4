@@ -54,8 +54,8 @@ public class PengajuanSuratModel {
     @Transient
     private String statusUpdate;
 
-    @Transient
-    private String uuid;
+//    @Transient
+//    private String uuid;
 
     @Transient
     private String username;
@@ -146,9 +146,9 @@ public class PengajuanSuratModel {
         this.statusUpdate = statusUpdate;
     }
 
-    public String getUuid() {return uuid; }
-
-    public void setUuid(String uuid) { this.uuid = uuid; }
+//    public String getUuid() {return uuid; }
+//
+//    public void setUuid(String uuid) { this.uuid = uuid; }
 
     public String getUsername() { return username; }
 
