@@ -54,7 +54,7 @@
                     <td class="text-center" th:text="${jenisSurat.keterangan}"></td>
                     <td class="text-center">
                       <form th:action="'/jenis-surat/delete/'+${jenisSurat.id}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus jenis surat ini?');">
-                        <button type="submit" class="btn btn-danger btn-sm">hapus</button>
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
                       </form>
                     </td>
                   </tr>
@@ -63,7 +63,7 @@
               </div>
               <div class="d-block text-center card-footer">
                 <form th:action="@{/jenis-surat/add}" method="GET">
-                  <button class="btn-wide btn btn-success">Tambah</button>
+                  <button class="btn-wide btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
                 </form>
               </div>
             </div>

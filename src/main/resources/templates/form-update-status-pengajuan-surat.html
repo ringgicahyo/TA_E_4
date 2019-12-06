@@ -41,7 +41,7 @@
                         <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <h5 class="card-title">Form Update Status Pengajuan Surat</h5>
-                                <form class="form needs-validation" role="form" th:action="@{'/pengajuan-surat/ubah/'+ ${id}}" th:object="${pengajuanSurat}" method="POST">
+                                <form class="form needs-validation" role="form" th:action="@{'/pengajuan-surat/ubah/' + ${#httpServletRequest.remoteUser} + @{'/'} + ${id}}" th:object="${pengajuanSurat}" method="POST">
                                     <div class="position-relative row form-group">
                                         <label th:if="${username} == 'Kepala Sekolah'" for="status1" class="col-sm-2 col-form-label">Status</label>
                                         <label th:if="${username} == 'Admin TU'" for="status2" class="col-sm-2 col-form-label">Status</label>

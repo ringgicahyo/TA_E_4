@@ -42,10 +42,10 @@
                                         <p class="card-text" th:text="'Jumlah: ' + ${lowongan.jumlah}"></p>
                                         <p class="card-text" th:text="'Jenis Lowongan: ' + ${lowongan.jenisLowongan.nama}"></p>
                                         <form th:action="@{/lowongan/delete/{id}(id=${lowongan.id})}">
-                                            <button class="btn btn-danger" style="float:right;">hapus</button>
+                                            <button class="btn btn-danger btn-sm" style="float:right;"><i class="fa fa-trash"></i> Hapus</button>
                                         </form>
                                         <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
-                                            <button class="btn btn-info" style="float:right; margin-right: 5px;">ubah</button>
+                                            <button class="btn btn-info btn-sm" style="float:right;"><i class="fa fa-edit"></i> Ubah</button>
                                         </form>
                                     </div>
                                 </div>
