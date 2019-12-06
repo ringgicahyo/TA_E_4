@@ -67,12 +67,11 @@ public class PengecekkanPengajuanSuratController {
 
             PengajuanSuratModel hasil = pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
             if(hasil.getStatus().equals("Menunggu Persetujuan")) {
-                redirectAttributes.addFlashAttribute("Berhasil");
+                return "Berhasil";
             }
             else {
-                redirectAttributes.addFlashAttribute("Gagal");
+                return "Gagal";
             }
-            return "redirect:/pengajuan-pinjaman";
         }
     }
 
