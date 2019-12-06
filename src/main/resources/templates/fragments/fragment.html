@@ -89,7 +89,9 @@
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div th:fragment="navbar-header" class="app-header header-shadow">
         <div class="app-header__logo">
-            <div class="logo-src"></div>
+            <a th:href="@{/}">
+                <div class="logo-src"></div>
+            </a>
             <div class="header__pane ml-auto">
                 <div>
                     <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -141,9 +143,9 @@
                         </a>
                     </li>
                     <li class="dropdown nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            <i class="nav-link-icon fa fa-cog"></i>
-                            Settings
+                        <a th:href="@{/user/add-employee}" class="nav-link">
+                            <i class="nav-link-icon fa fa-user-plus"></i>
+                            Tambah Admin TU
                         </a>
                     </li>
                 </ul>
@@ -162,6 +164,7 @@
                                         <a tabindex="0" class="dropdown-item" th:href="@{/user/profile}">User Profile</a>
                                         <a tabindex="0" class="dropdown-item" th:href="@{/user/updatePassword}">Ganti Password</a>
                                         <a tabindex="0" class="dropdown-item" th:href="@{/user/addUser}">Tambah User</a>
+                                        <div tabindex="-1" class="dropdown-divider"></div>
                                         <a tabindex="0" class="dropdown-item" th:href="@{/logout}">Logout</a>
                                     </div>
                                 </div>
@@ -407,7 +410,7 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Home</li>
                         <li>
-                            <a th:href="@{/}" class="mm-active">
+                            <a th:href="@{/}">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Dashboard
                             </a>
@@ -495,13 +498,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="app-sidebar__heading">User</li>
-                        <li>
-                            <a th:href="@{/user/add-employee}">
-                                <i class="metismenu-icon pe-7s-mouse">
-                                </i>Tambah Admin TU
-                            </a>
                         </li>
                     </ul>
                 </div>

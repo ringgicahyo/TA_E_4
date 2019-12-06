@@ -56,18 +56,11 @@ public class PengecekkanPengajuanSuratController {
             JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(pengajuanSurat.getIdJenisSurat());
             pengajuanSurat.setJenisSurat(jenisSurat);
 
-//            Map<String, Object> pengecekkan =
-//                    pengecekkanPengajuanSuratService.getUserData(pengajuanSurat.getUuid());
-//            UserModel user = userService.getUserByUsername(pengajuanSurat.getUsernameUser());
             UserModel user = new UserModel();
-            user.setRole(roleService.findByNama("Employee"));
+            user.setRole(roleService.findByNama("Pustakawan"));
             user.setUsername(pengajuanSurat.getUsername());
             user.setPassword(pengajuanSurat.getPassword());
-            UserModel userAdd = userService.addUser(user);
-
-            System.out.println("test");
-            System.out.println(pengajuanSurat.getUsername());
-            System.out.println(pengajuanSurat.getPassword());
+            userService.addUser(user);
 
             pengajuanSurat.setUser(user);
             pengajuanSurat.setStatus("Menunggu Persetujuan");
