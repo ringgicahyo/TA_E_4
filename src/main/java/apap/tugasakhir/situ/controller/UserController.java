@@ -142,24 +142,28 @@ public class UserController {
 
         if (!passwordCorrect) {
             // Wrong password.
+            model.addAttribute("errorStatusCode", "1");
             model.addAttribute("error", "Password salah!");
             return "form-update-password";
         }
 
         if (passwordUnchanged) {
             // Unchanged password.
+            model.addAttribute("errorStatusCode", "2");
             model.addAttribute("error", "Password lama dan baru sama!");
             return "form-update-password";
         }
 
         if (!newPasswordValid) {
             // Invalid new password.
+            model.addAttribute("errorStatusCode", "3");
             model.addAttribute("error", "Password harus mengandung huruf, angka, dan minimal 8 karakter!");
             return "form-update-password";
         }
 
         if (!newPasswordMatch) {
             // Password mismatch
+            model.addAttribute("errorStatusCode", "4");
             model.addAttribute("error", "Password baru dan konfirmasi password salah!");
             return "form-update-password";
         }

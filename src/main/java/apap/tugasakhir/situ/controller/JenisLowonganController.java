@@ -54,6 +54,7 @@ public class JenisLowonganController {
     JenisLowonganModel jenisLowongan = jenisLowonganService.getJenisLowongan(idJenisLowongan);
     jenisLowonganService.deleteJenisLowongan(jenisLowongan);
 
+    redirectAttributes.addFlashAttribute("status", true);
     redirectAttributes.addFlashAttribute("message", "Jenis lowongan dengan nama " + jenisLowongan.getNama() + " berhasil dihapus.");    
     return "redirect:/jenis-lowongan/view-all";
   }

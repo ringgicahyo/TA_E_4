@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <title>Tambah Jenis Lowongan</title>
-  <object th:include="fragments/fragment  ::  css" th:remove="tag"></object>
-  <object th:include="fragments/fragment  ::  js" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
-
 <body>
-  <nav th:replace="fragments/fragment  ::  navbar"></nav>
-  <div class="container-fluid" style="margin-top: 10px;">
-    <div class="card">
-      <div class="card-header">
-          <h5>Pembuatan Jenis Lowongan</h5>
-      </div>
-      <div class="card-body">
-        <div th:if="${status != null}">
-          <span th:if="${!status}" th:text="${message}" style="color: red"></span>
-          <span th:if="${status}" th:text="${message}" style="color: green"></span>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+  <div th:replace="fragments/fragment :: navbar-header"></div>
+  <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+  <div class="app-main">
+    <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+    <!-- CONTENT GOES HERE -->
+    <div class="app-main__outer">
+      <div class="app-main__inner">
+        <div class="app-page-title">
+          <div class="page-title-wrapper">
+            <div class="page-title-heading">
+              <div class="page-title-icon">
+                <i class="pe-7s-next-2 icon-gradient bg-premium-dark">
+                </i>
+              </div>
+              <div>Form Tambah Jenis Lowongan
+                <div class="page-title-subheading">Form ini digunakan untuk menambah jenis lowongan.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <form th:action="@{/jenis-lowongan/add}" method="POST" th:object="${jenisLowongan}">
-          <div class="form-group">
-            <label for="input-jenis-nama">Nama*</label>
-            <input type="text" name="nama" id="input-jenis-nama" required placeholder="Masukkan nama jenis lowongan..." maxlength="200" class="form-control">
-            <small id="namaHelp" class="form-text text-muted">Nama memiliki maksimal 200 karakter dan belum pernah terdaftar (unik).</small>
-          </div>          
-          <div class="form-group">
-            <label for="input-jenis-keterangan">Keterangan*</label>
-            <input type="text" name="keterangan" id="input-jenis-keterangan" required placeholder="Masukkan keterangan jenis lowongan..." maxlength="200" class="form-control">
-            <small id="keteranganHelp" class="form-text text-muted">Keterangan memiliki maksimal 200 karakter.</small>
-          </div>          
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </form>
-      </div>                
-    </div>    
+        <!--        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">-->
+        <!--          <li class="nav-item">-->
+        <!--            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">-->
+        <!--              <span>Tambah Jenis Surat</span>-->
+        <!--            </a>-->
+        <!--          </li>-->
+        <!--        </ul>-->
+        <div class="tab-content">
+          <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div th:if="${status != null}">
+              <span th:if="${!status}" th:text="${message}" class="alert alert-danger"></span>
+              <span th:if="${status}" th:text="${message}" class="alert alert-success"></span>
+              <br>
+            </div>
+            <div class="main-card mb-3 card">
+              <div class="card-body">
+                <h5 class="card-title">Form Tambah Jenis Lowongan</h5>
+                <form class="form needs-validation" role="form" th:action="@{/jenis-lowongan/add}" th:object="${jenisLowongan}" method="POST">
+                  <div class="position-relative row form-group">
+                    <label for="namaJenisLowongan" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="col-sm-10">
+                      <input name="nama" id="namaJenisLowongan" placeholder="Nama" type="text" class="form-control" maxlength="200" required>
+                      <small id="namaHelp" class="form-text text-muted">Nama memiliki maksimal 200 karakter dan belum pernah terdaftar (unik).</small>
+                    </div>
+                  </div>
+                  <div class="position-relative row form-group">
+                    <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                    <div class="col-sm-10">
+                      <input name="keterangan" id="keterangan" placeholder="Keterangan" type="text" class="form-control" maxlength="200" required>
+                      <small id="keteranganHelp" class="form-text text-muted">Keterangan memiliki maksimal 200 karakter.</small>
+                    </div>
+                  </div>
+                  <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                  <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <script th:replace="fragments/fragment :: script"></script>
+</div>
 </body>
-
 </html>

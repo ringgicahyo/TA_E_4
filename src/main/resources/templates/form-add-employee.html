@@ -1,56 +1,108 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Tambah Admin TU Baru</title>
+    <title>Form Tambah Admin TU</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
-
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
-
-<div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
-    <h2 style="text-align: center; margin-bottom: 20px;">Tambah Admin TU Baru</h2>
-    <div class="row">
-        <div class="container">
-            <div class="card" style="width: 34rem; margin: auto;">
-                <div class="card-header bg-dark text-white">Tambah Admin TU Baru</div>
-                <div class="card-body">
-                    <form th:action="@{/user/add-employee}" method="POST">
-                        <p th:text="${error} == 'success' ? 'Pembuatan akun Admin TU berhasil!' : ${error}"></p>
-                        <input hidden name="role" th:value="2">
-
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control"/>
-
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control">
-
-                        <label>Nama</label>
-                        <input type="text" name="nama" class="form-control">
-
-                        <label>Tempat Lahir</label>
-                        <input type="text" name="tempatLahir" class="form-control">
-
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tanggalLahir" class="form-control">
-
-                        <label>Alamat</label>
-                        <input type="text" name="alamat" class="form-control">
-
-                        <label>Telepon</label>
-                        <input type="text" name="telepon" class="form-control">
-
-                        <br>
-                        <div class="row form-group">
-                            <button type="submit" class="btn btn-dark" style="margin: auto;">Tambah Admin TU</button>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div th:replace="fragments/fragment :: navbar-header"></div>
+    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-add-user icon-gradient bg-premium-dark">
+                                </i>
+                            </div>
+                            <div>Form Tambah Admin TU
+                                <div class="page-title-subheading">Form ini digunakan untuk menambahkan admin TU yang baru.
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <!--                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">-->
+                <!--                    <li class="nav-item">-->
+                <!--                        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">-->
+                <!--                            <span>Tambah Lowongan</span>-->
+                <!--                        </a>-->
+                <!--                    </li>-->
+                <!--                </ul>-->
+                <div class="tab-content">
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div th:if="${error} == 'success'" class="alert alert-success">
+                            <span th:text="'Pembuatan akun Admin TU berhasil!'"></span>
+                            <br>
+                        </div>
+                        <div th:if="${error} == 'Terdapat kesalahan data!'" class="alert alert-danger">
+                            <span th:text="${error}"></span>
+                            <br>
+                        </div>
+                        <div class="main-card mb-3 card">
+                            <div class="card-body"><h5 class="card-title">Form Tambah Admin TU</h5>
+                                <form class="form needs-validation" role="form" th:action="@{/user/add-employee}" method="POST">
+                                    <input name="role" id="inputRole" th:value="2" hidden>
+                                    <div class="position-relative row form-group">
+                                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <input name="username" id="username" placeholder="Username" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input name="password" id="password" placeholder="********" type="password" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                        <div class="col-sm-10">
+                                            <input name="nama" id="nama" placeholder="Nama" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="tempatLahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                                        <div class="col-sm-10">
+                                            <input name="tempatLahir" id="tempatLahir" placeholder="Tempat Lahir" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="tanggalLahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                        <div class="col-sm-10">
+                                            <input name="tanggalLahir" id="tanggalLahir" placeholder="" type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                        <div class="col-sm-10">
+                                            <textarea name="alamat" id="alamat" placeholder="Alamat" type="text" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="nomorTelepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                                        <div class="col-sm-10">
+                                            <input name="telepon" id="nomorTelepon" placeholder="" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                                    <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script th:replace="fragments/fragment :: script"></script>
 </div>
 </body>
 </html>

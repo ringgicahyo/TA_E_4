@@ -4,59 +4,85 @@
     <title>View All Lowongan</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment  ::  navbar"></nav>
-<div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
-    <h2 style="text-align: center; margin-bottom: 20px;">Sistem Informasi Tata Usaha</h2>
-    <div class="row">
-        <div class="container">
-            <div class="card">
-                <div class="card-header bg-dark text-white">Daftar Lowongan</div>
-                <div class="card-body"></div>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div th:replace="fragments/fragment :: navbar-header"></div>
+    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-portfolio icon-gradient bg-mean-fruit"></i>
+                            </div>
+                            <div>Daftar Lowongan
+                                <div class="page-title-subheading">Seluruh lowongan yang telah ditambahkan oleh Admin TU.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div th:if="${deleteStatus}" class="alert alert-success">
                     <span th:text="${deleteMessage}"></span>
+                    <br>
                 </div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Tanggal Dibuka</th>
-                        <th scope="col">Tanggal Ditutup</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Jenis Lowongan</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="lowongan, iterationStatus : *{listLowongan}">
-                        <td th:text="${iterationStatus.count}"></td>
-                        <td><a th:href="@{/lowongan/view/{id}(id=${lowongan.id})}" th:text="${lowongan.judul}"></a></td>
-                        <td th:text="${#dates.format(lowongan.tanggalDibuka, 'yyyy-MM-dd')}"></td>
-                        <td th:text="${#dates.format(lowongan.tanggalDitutup, 'yyyy-MM-dd')}"></td>
-                        <td th:text="${lowongan.keterangan}"></td>
-                        <td th:text="${lowongan.jumlah}"></td>
-                        <td th:text="${lowongan.jenisLowongan.nama}"></td>
-                        <td>
-                            <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
-                                <button class="btn btn-info" type="submit">ubah</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form th:action="@{/lowongan/delete/{id}(id=${lowongan.id})}">
-                                <button class="btn btn-danger" type="submit">hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <form th:action="@{/lowongan/tambah}" method="GET">
-                    <button class="btn btn-success" type="submit" style="float: right; margin-bottom: 10px; margin-right: 20px;">Tambah Lowongan</button>
-                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card">
+                            <div class="card-header">Daftar Lowongan</div>
+                            <div class="table-responsive">
+                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Judul</th>
+                                        <th class="text-center">Tanggal Dibuka</th>
+                                        <th class="text-center">Tanggal Ditutup</th>
+                                        <th class="text-center">Keterangan</th>
+                                        <th class="text-center">Jumlah</th>
+                                        <th class="text-center">Jenis Lowongan</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="lowongan, iterationStatus : *{listLowongan}">
+                                        <td class="text-center" th:text="${iterationStatus.count}"></td>
+                                        <td><a th:href="@{/lowongan/view/{id}(id=${lowongan.id})}" th:text="${lowongan.judul}"></a></td>
+                                        <td class="text-center" th:text="${#dates.format(lowongan.tanggalDibuka, 'yyyy-MM-dd')}"></td>
+                                        <td class="text-center" th:text="${#dates.format(lowongan.tanggalDitutup, 'yyyy-MM-dd')}"></td>
+                                        <td class="text-center" th:text="${lowongan.keterangan}"></td>
+                                        <td class="text-center" th:text="${lowongan.jumlah}"></td>
+                                        <td class="text-center" th:text="${lowongan.jenisLowongan.nama}"></td>
+                                        <td class="text-center">
+                                            <form th:action="@{/lowongan/update/{id}(id=${lowongan.id})}">
+                                                <button class="btn btn-sm btn-info" type="submit"><i class="fa fa-edit"></i> Ubah</button>
+                                            </form>
+                                            <br>
+                                            <form th:action="@{/lowongan/delete/{id}(id=${lowongan.id})}">
+                                                <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-block text-center card-footer">
+                                <form th:action="@{/lowongan/tambah}" method="GET">
+                                    <button class="btn-wide btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script th:replace="fragments/fragment :: script"></script>
 </div>
 </body>
 </html>

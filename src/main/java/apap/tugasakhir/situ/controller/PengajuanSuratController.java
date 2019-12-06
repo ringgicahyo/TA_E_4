@@ -32,16 +32,10 @@ public class PengajuanSuratController {
     public String home(@PathVariable String username, Model model) {
         UserModel user = userService.getUserByUsername(username);
         List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
-        System.out.println(user.getRole().getNama().equals("Admin TU"));
-        System.out.println(user.getRole().getNama());
-        System.out.println(user.getUsername());
 
         if(user.getRole().getNama().equals("Admin TU") || user.getRole().getNama().equals("Kepala Sekolah") ){
-
-            //Membuat list yang menampung objek semua pasien yang ada pada database
             listPengajuan = pengajuanSuratService.getListPengajuanSurat();
         }else {
-            System.out.println("Test Masuk sini");
             listPengajuan = user.getListPengajuanSurat();
         }
         model.addAttribute("username", user.getRole().getNama());
@@ -85,21 +79,43 @@ public class PengajuanSuratController {
         UserModel user = userService.getUserByUsername(username);
         pengajuanSurat.setUser(user);
 
-        pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
+        String hasilTambah = pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
+
+        List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
+        if(user.getRole().getNama().equals("Admin TU") || user.getRole().getNama().equals("Kepala Sekolah") ){
+            listPengajuan = pengajuanSuratService.getListPengajuanSurat();
+        }else {
+            listPengajuan = user.getListPengajuanSurat();
+        }
+        model.addAttribute("username", user.getRole().getNama());
+        model.addAttribute("listPengajuan", listPengajuan);
+
+        model.addAttribute("hasil", hasilTambah);
         model.addAttribute("pengajuanSurat", pengajuanSurat);
         model.addAttribute("title", "Menambah Pengajuan Surat");
 
-        return "pengajuan-surat-response";
+        return "daftar-pengajuan-surat";
     }
 
     //Menghapus pengajuan Surat yang ada pada daftar pengajuan Surat
-    @RequestMapping(value="/pengajuan-surat/hapus/{id}")
-    private String deletePengajuanSurat(@PathVariable(value = "id") Integer idPengajuanSurat, Model model) {
+    @RequestMapping(value="/pengajuan-surat/hapus/{username}/{id}")
+    private String deletePengajuanSurat(@PathVariable String username,
+                                        @PathVariable(value = "id") Integer idPengajuanSurat, Model model) {
         String hasilHapus = pengajuanSuratService.deletePengajuanSurat(idPengajuanSurat);
+
+        UserModel user = userService.getUserByUsername(username);
+        List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
+        if(user.getRole().getNama().equals("Admin TU") || user.getRole().getNama().equals("Kepala Sekolah") ){
+            listPengajuan = pengajuanSuratService.getListPengajuanSurat();
+        }else {
+            listPengajuan = user.getListPengajuanSurat();
+        }
+        model.addAttribute("username", user.getRole().getNama());
+        model.addAttribute("listPengajuan", listPengajuan);
 
         model.addAttribute("title", "Hapus Pengajuan Surat");
         model.addAttribute("hasil", hasilHapus);
-        return "delete-pengajuan-surat-response";
+        return "daftar-pengajuan-surat";
     }
 
     @RequestMapping(value = "pengajuan-surat/ubah/{username}/{id}", method = RequestMethod.GET)
@@ -113,8 +129,9 @@ public class PengajuanSuratController {
 
         }else if(pengajuanSurat.getStatus().equals("Disetujui") && user.getRole().getNama().equals("Admin TU")){
             model.addAttribute("username", "Admin TU");
-            System.out.println("Masuk ke Admin TU");
         }
+
+
         model.addAttribute("statusUpdate", pengajuanSurat.getStatusUpdate());
         model.addAttribute("username", user.getRole().getNama());
         model.addAttribute("id", idPengajuanSurat);
@@ -123,8 +140,9 @@ public class PengajuanSuratController {
         return "form-update-status-pengajuan-surat";
     }
 
-    @RequestMapping(value = "pengajuan-surat/ubah/{id}", method = RequestMethod.POST)
-    private String ubahPengajuanSuratSubmit(@PathVariable(value = "id") Integer idPengajuanSurat,
+    @RequestMapping(value = "pengajuan-surat/ubah/{username}/{id}", method = RequestMethod.POST)
+    private String ubahPengajuanSuratSubmit(@PathVariable String username,
+                                            @PathVariable(value = "id") Integer idPengajuanSurat,
                                             @ModelAttribute PengajuanSuratModel pengajuanSurat, Model model) {
 //        PengajuanSuratModel pengajuanSurat = pengajuanSuratService.getPengajuanSurat(idPengajuanSurat);
         System.out.println(pengajuanSurat.getStatusUpdate());
@@ -132,8 +150,15 @@ public class PengajuanSuratController {
         String hasilUbah = pengajuanSuratService.ubahPengajuanSurat(pengajuanSurat);
         System.out.println(hasilUbah);
 
+        List<PengajuanSuratModel> listPengajuan = new ArrayList<>();
+        listPengajuan = pengajuanSuratService.getListPengajuanSurat();
+
+        UserModel user = userService.getUserByUsername(username);
+
+        model.addAttribute("listPengajuan", listPengajuan);
+        model.addAttribute("username", user.getRole().getNama());
         model.addAttribute("title", "Ubah Pengajuan Surat");
         model.addAttribute("hasil", hasilUbah);
-        return "update-pengajuan-surat-response";
+        return "daftar-pengajuan-surat";
     }
 }
