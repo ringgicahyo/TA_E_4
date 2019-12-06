@@ -2,43 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>Form Add User</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
-
-<div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">
-    <h2 style="text-align: center; margin-bottom: 20px;">Tambah User Baru</h2>
-    <div class="row">
-        <div class="container">
-            <div class="card" style="width: 34rem; margin: auto;">
-                <div class="card-header bg-dark text-white">Tambah User Baru</div>
-                <div class="card-body">
-                    <form th:action="@{/user/addUser}" method="POST">
-                        <p th:text="${error} == 'success' ? 'Pembuatan akun berhasil!' : ${error}"></p>
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control"/>
-
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control">
-
-                        <label>Role</label>
-                        <select name="role" class="form-control">
-                            <option selected value="">-- Pilih Role --</option>
-                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
-                        </select>
-
-                        <br>
-                        <div class="row form-group">
-                            <button type="submit" class="btn btn-dark" style="margin: auto;">Simpan</button>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div th:replace="fragments/fragment :: navbar-header"></div>
+    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                </i>
+                            </div>
+                            <div>Form Tambah User
+                                <div class="page-title-subheading">Form ini digunakan untuk menambahkan user yang baru.
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <!--                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">-->
+                <!--                    <li class="nav-item">-->
+                <!--                        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">-->
+                <!--                            <span>Tambah Lowongan</span>-->
+                <!--                        </a>-->
+                <!--                    </li>-->
+                <!--                </ul>-->
+                <div class="tab-content">
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div th:if="${error} == 'success'" class="alert alert-success">
+                            <span th:text="'Pembuatan akun Admin TU berhasil!'"></span>
+                            <br>
+                        </div>
+                        <div th:if="${error} == 'Terdapat kesalahan data!'" class="alert alert-danger">
+                            <span th:text="${error}"></span>
+                            <br>
+                        </div>
+                        <div class="main-card mb-3 card">
+                            <div class="card-body"><h5 class="card-title">Form Tambah User</h5>
+                                <form class="form needs-validation" role="form" th:action="@{/user/addUser}" method="POST">
+                                    <div class="position-relative row form-group">
+                                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <input name="username" id="username" placeholder="Username" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input name="password" id="password" placeholder="********" type="password" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="role" class="col-sm-2 col-form-label">Role</label>
+                                        <div class="col-sm-10">
+                                            <select name="role" id="role" class="form-control" size="0" required>
+                                                <option th:value="0" selected> -- Pilih Role -- </option>
+                                                <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                                    <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script th:replace="fragments/fragment :: script"></script>
 </div>
 </body>
 </html>

@@ -118,26 +118,26 @@
                 </button>
             </span>
         </div>
-        <div class="app-header__content">
+        <div class="app-header__content" sec:authorize="isAuthenticated()">
             <div class="app-header-left">
-                <div class="search-wrapper">
-                    <div class="input-holder">
-                        <input type="text" class="search-input" placeholder="Type to search">
-                        <button class="search-icon"><span></span></button>
-                    </div>
-                    <button class="close"></button>
-                </div>
+<!--                <div class="search-wrapper">-->
+<!--                    <div class="input-holder">-->
+<!--                        <input type="text" class="search-input" placeholder="Type to search">-->
+<!--                        <button class="search-icon"><span></span></button>-->
+<!--                    </div>-->
+<!--                    <button class="close"></button>-->
+<!--                </div>-->
                 <ul class="header-menu nav">
                     <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
+                        <a th:href="@{/user/siperpus}" class="nav-link">
                             <i class="nav-link-icon fa fa-database"> </i>
-                            Statistics
+                            Daftar User SI-Perpus
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
+                        <a th:href="@{/pengajuan-pinjaman}" class="nav-link">
                             <i class="nav-link-icon fa fa-edit"></i>
-                            Projects
+                            Buat Pengajuan Pinjaman
                         </a>
                     </li>
                     <li class="dropdown nav-item">
@@ -158,17 +158,17 @@
                                         <img width="42" class="rounded-circle" src="/images/avatar-logo.jpg" alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
-                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right" sec:authorize="isAuthenticated()">
-                                        <a tabindex="0" class="dropdown-item">User Profile</a>
+                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                        <a tabindex="0" class="dropdown-item" th:href="@{/user/profile}">User Profile</a>
+                                        <a tabindex="0" class="dropdown-item" th:href="@{/user/updatePassword}">Ganti Password</a>
+                                        <a tabindex="0" class="dropdown-item" th:href="@{/user/addUser}">Tambah User</a>
                                         <a tabindex="0" class="dropdown-item" th:href="@{/logout}">Logout</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-content-left  ml-3 header-user-info" sec:authorize="isAuthenticated()">
-<!--                                <div sec:authorize="isAuthenticated()" class="widget-heading" th:text="${loggedUser.username}"></div>-->
-<!--                                <div sec:authorize="isAuthenticated()" class="widget-subheading" th:text="${loggedUser.role.nama}"></div>-->
-<!--                                <a sec:authorize="isAuthenticated()" class="nav-item nav-link active" th:href="@{/logout}">Log Out</a>-->
-
+                            <div class="widget-content-left ml-3 header-user-info">
+                                <div class="widget-heading"><span sec:authentication="name"></span></div>
+                                <div class="widget-subheading"><span sec:authentication="principal.authorities[0]"></span></div>
                             </div>
                         </div>
                     </div>
