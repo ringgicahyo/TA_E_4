@@ -6,12 +6,15 @@
 </head>
 
 <body>
-<nav th:replace="fragments/fragment  ::  navbar"></nav>
+<div th:replace="fragments/fragment :: navbar-header"></div>
+<div th:replace="fragments/fragment :: ui-theme-settings"></div>
+<div class="app-main">
+    <div th:replace="fragments/fragment :: navbar-sidebar"></div>
 <div class="container-fluid">
     <div class="container">
         <h1 class="text-center font-weight-bold mt-5" > Ubah Status Pengajuan Surat </h1>
         <br><br><br>
-        <form th:action="@{'/pengajuan-surat/ubah/'+ ${id}}"
+        <form th:action="@{'/pengajuan-surat/ubah/' + ${#httpServletRequest.remoteUser} + @{'/'} + ${id}}"
               th:object="${pengajuanSurat}" method="POST">
             Ubah Status:
             <select th:if="${username} == 'Kepala Sekolah'" class="form-control" th:field="*{statusUpdate}">
@@ -28,6 +31,8 @@
             </button>
         </form>
     </div>
+</div>
+</div>
 </div>
 </body>
 </html>
