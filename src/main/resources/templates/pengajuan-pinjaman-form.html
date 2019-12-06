@@ -38,9 +38,12 @@
         <!--        </ul>-->
         <div class="tab-content">
           <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-            <div th:if="${message} or ${message2}">
-              <span th:text="${message}" class="alert alert-success"></span>
-              <span th:text="${message2}" class="alert alert-danger"></span>
+            <div th:if="${status != null and !status}" class="alert alert-danger">
+              <span th:text="${message}"></span>
+              <br>
+            </div>
+            <div th:if="${status != null and status}" class="alert alert-success">              
+              <span th:text="${message}"></span>
               <br>
             </div>
             <div class="main-card mb-3 card">

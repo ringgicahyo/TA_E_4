@@ -1,18 +1,18 @@
 package apap.tugasakhir.situ.rest;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PinjamanDetail {
 
-  @JsonProperty("status")
-  private int status;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PinjamanDetail {
   
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @DateTimeFormat(iso = ISO.DATE)
   @JsonProperty("tanggalPengajuan")
   private Date tanggalPengajuan;  
 
@@ -21,13 +21,6 @@ public class PinjamanDetail {
 
   @JsonProperty("idAnggota")
   private Integer idAnggota;
-
-  /**
-   * @param status the status to set
-   */
-  public void setStatus(int status) {
-    this.status = status;
-  }
 
   /**
    * @param tanggalPengajuan the tanggalPengajuan to set
@@ -69,12 +62,5 @@ public class PinjamanDetail {
    */
   public Integer getIdAnggota() {
     return idAnggota;
-  }
-
-  /**
-   * @return the status
-   */
-  public int getStatus() {
-    return status;
   }
 }
