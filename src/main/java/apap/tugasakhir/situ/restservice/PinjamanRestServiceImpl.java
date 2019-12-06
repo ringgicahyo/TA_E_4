@@ -1,9 +1,9 @@
 package apap.tugasakhir.situ.restservice;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import java.text.SimpleDateFormat;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.json.JSONObject;
 
 import apap.tugasakhir.situ.rest.Setting;
 import apap.tugasakhir.situ.rest.PinjamanDetail;
@@ -18,10 +18,14 @@ public class PinjamanRestServiceImpl implements PinjamanRestService{
   }
 
   public PinjamanDetail pengajuanPinjamanPost(PinjamanDetail pinjaman) {
-    MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
-    data.add("idAnggota", pinjaman.getIdAnggota().toString());    
-    data.add("tanggalPengajuan", pinjaman.getTanggalPengajuan().toString());    
-    data.add("jumlahPinjaman", pinjaman.getJumlahPinjaman().toString());
-    return this.webClient.post().uri("pinjaman/add-pinjaman").header("Content-Type", "application/json").bodyValue(data).retrieve().bodyToMono(PinjamanDetail.class).block();
+    JSONObject data = new JSONObject();    
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    String date = formatter.format(pinjaman.getTanggalPengajuan());
+
+    data.put("idAnggota", pinjaman.getIdAnggota().toString());    
+    data.put("tanggalPengajuan", date);    
+    data.put("jumlahPinjaman", pinjaman.getJumlahPinjaman().toString());
+
+    return this.webClient.post().uri("/api/pinjaman/ajukan").header("Content-Type", "application/json").bodyValue(data.toString()).retrieve().bodyToMono(PinjamanDetail.class).block();
   }
 }

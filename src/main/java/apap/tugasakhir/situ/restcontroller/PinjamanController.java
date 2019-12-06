@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import apap.tugasakhir.situ.rest.PinjamanDetail;
 import apap.tugasakhir.situ.restservice.PinjamanRestService;
@@ -27,17 +30,16 @@ public class PinjamanController {
 
   @RequestMapping(value = "/pengajuan-pinjaman", method = RequestMethod.POST)
   public String pengajuanPinjamanSubmit(@ModelAttribute PinjamanDetail pinjamanDetail, Model model, RedirectAttributes redirectAttributes) {    
-    PinjamanDetail postPinjaman = pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail);
-
-    if(postPinjaman.getStatus() == 400) {
-      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error (Bad Request).");
+    try {      
+      PinjamanDetail postPinjaman = pinjamanRestService.pengajuanPinjamanPost(pinjamanDetail);      
+      redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan dengan jumlah pinjaman " + postPinjaman.getJumlahPinjaman() + " atas ID Anggota " + postPinjaman.getIdAnggota());
+    } catch(WebClientResponseException.NotFound error) {      
+      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 404 (ID Anggota tidak dapat ditemukan).");      
+    } catch(WebClientResponseException.BadRequest error) {      
+      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 400 (Bad Request).");      
+    } catch(WebClientResponseException.InternalServerError error) {
+      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error 500 (Internal Server Error).");      
     }
-    else if(postPinjaman.getStatus() == 404) {
-      redirectAttributes.addFlashAttribute("message2", "Mohon maaf. Telah terjadi error (ID Anggota tidak dapat ditemukan).");
-    }
-    else {
-      redirectAttributes.addFlashAttribute("message", "Pinjaman berhasil ditambahkan!");
-    }    
     return "redirect:/pengajuan-pinjaman";
   }
 }
