@@ -9,7 +9,7 @@
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div th:replace="fragments/fragment :: navbar-header"></div>
-    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+<!--    <div th:replace="fragments/fragment :: ui-theme-settings"></div>-->
     <div class="app-main">
 <!--        <div th:replace="fragments/fragment :: navbar-sidebar"></div>-->
         <!-- CONTENT GOES HERE -->
@@ -70,35 +70,6 @@
     </div>
     <script th:replace="fragments/fragment :: script"></script>
 </div>
-
-<!--<div class="container-fluid" style="float: none; margin-top: 20px; margin-bottom: 20px;">-->
-<!--    <h2 style="text-align: center; margin-bottom: 20px;">Sistem Informasi Tata Usaha</h2>-->
-<!--    <div class="row">-->
-<!--        <div class="container">-->
-<!--            <div class="card" style="width: 34rem; margin: auto;">-->
-<!--                <div class="card-header bg-dark text-white">Log In</div>-->
-<!--                <div class="card-body">-->
-<!--                    <div th:if="${param.error}">-->
-<!--                        <span style="color: red">Invalid username or password</span>-->
-<!--                    </div>-->
-<!--                    <form th:action="@{/login}" method="POST">-->
-<!--                        <div class="row form-group">-->
-<!--                            <label class="col-sm-4">Username:</label>-->
-<!--                            <input type="text" class="col-sm-8 form-control input-sm" name="username">-->
-<!--                        </div>-->
-<!--                        <div class="row form-group">-->
-<!--                            <label class="col-sm-4">Password:</label>-->
-<!--                            <input type="password" class="col-sm-8 form-control input-sm" name="password">-->
-<!--                        </div>-->
-<!--                        <div class="row form-group">-->
-<!--                            <button type="submit" class="btn btn-dark" style="margin: auto;">Log In</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 </body>
 
 </html>
