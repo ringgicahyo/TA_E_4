@@ -5,6 +5,7 @@ import apap.tugasakhir.situ.model.PengajuanSuratModel;
 import apap.tugasakhir.situ.model.UserModel;
 import apap.tugasakhir.situ.service.JenisSuratService;
 import apap.tugasakhir.situ.restservice.PengecekkanPengajuanSuratService;
+import apap.tugasakhir.situ.service.RoleService;
 import apap.tugasakhir.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ public class PengecekkanPengajuanSuratController {
     private UserService userService;
     @Autowired
     private JenisSuratService jenisSuratService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping(value="/pengajuan-surat/{noSurat}")
     private Map<String, Object> retrievePengajuanSurat(@PathVariable("noSurat") String noSurat) {
@@ -53,15 +56,21 @@ public class PengecekkanPengajuanSuratController {
             JenisSuratModel jenisSurat = jenisSuratService.getJenisSurat(pengajuanSurat.getIdJenisSurat());
             pengajuanSurat.setJenisSurat(jenisSurat);
 
-            UserModel user = userService.getUserByUsername(pengajuanSurat.getUsernameUser());
+            UserModel user = new UserModel();
+            user.setRole(roleService.findByNama("Pustakawan"));
+            user.setUsername(pengajuanSurat.getUsername());
+            user.setPassword(pengajuanSurat.getPassword());
+            userService.addUser(user);
+
             pengajuanSurat.setUser(user);
+            pengajuanSurat.setStatus("Menunggu Persetujuan");
 
             PengajuanSuratModel hasil = pengecekkanPengajuanSuratService.createPengajuanSurat(pengajuanSurat);
             if(hasil.getStatus().equals("Menunggu Persetujuan")) {
-                redirectAttributes.addFlashAttribute("message", "Telah terjadi error. Surat tidak bisa ditambahkan");
+                redirectAttributes.addFlashAttribute("Berhasil");
             }
             else {
-                redirectAttributes.addFlashAttribute("message", "Surat berhasil ditambahkan!");
+                redirectAttributes.addFlashAttribute("Gagal");
             }
             return "redirect:/pengajuan-pinjaman";
         }

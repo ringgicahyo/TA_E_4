@@ -1,33 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <object th:include="fragments/fragment  ::  css" th:remove="tag"></object>
-    <object th:include="fragments/fragment  ::  js" th:remove="tag"></object>
+    <title>Form Update Status Pengajuan Surat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
-
 <body>
-<nav th:replace="fragments/fragment  ::  navbar"></nav>
-<div class="container-fluid">
-    <div class="container">
-        <h1 class="text-center font-weight-bold mt-5" > Ubah Status Pengajuan Surat </h1>
-        <br><br><br>
-        <form th:action="@{'/pengajuan-surat/ubah/'+ ${id}}"
-              th:object="${pengajuanSurat}" method="POST">
-            Ubah Status:
-            <select th:if="${username} == 'Kepala Sekolah'" class="form-control" th:field="*{statusUpdate}">
-                <option th:value="Ditolak" th:text="Ditolak">
-                <option th:value="Disetujui" th:text="Disetujui">
-            </select>
-            <select th:if="${username} == 'Admin TU'" class="form-control" th:field="*{statusUpdate}">
-                <option th:value="Diproses" th:text= "Diproses">
-                <option th:value="Selesai" th:text="Selesai">
-            </select>
-            <br><br>
-            <button class="btn btn-primary">
-                <a style="color: white"> Submit </a>
-            </button>
-        </form>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div th:replace="fragments/fragment :: navbar-header"></div>
+    <div th:replace="fragments/fragment :: ui-theme-settings"></div>
+    <div class="app-main">
+        <div th:replace="fragments/fragment :: navbar-sidebar"></div>
+        <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                </i>
+                            </div>
+                            <div>Update Status Pengajuan Surat
+                                <div class="page-title-subheading">Form ini digunakan memperbarui status pengajuan surat.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">-->
+                <!--          <li class="nav-item">-->
+                <!--            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">-->
+                <!--              <span>Tambah Jenis Surat</span>-->
+                <!--            </a>-->
+                <!--          </li>-->
+                <!--        </ul>-->
+                <div class="tab-content">
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body">
+                                <h5 class="card-title">Form Update Status Pengajuan Surat</h5>
+                                <form class="form needs-validation" role="form" th:action="@{'/pengajuan-surat/ubah/' + ${#httpServletRequest.remoteUser} + @{'/'} + ${id}}" th:object="${pengajuanSurat}" method="POST">
+                                    <div class="position-relative row form-group">
+                                        <label th:if="${username} == 'Kepala Sekolah'" for="status1" class="col-sm-2 col-form-label">Status</label>
+                                        <label th:if="${username} == 'Admin TU'" for="status2" class="col-sm-2 col-form-label">Status</label>
+                                        <div class="col-sm-10">
+                                            <select th:if="${username} == 'Kepala Sekolah'" class="form-control" th:field="*{statusUpdate}" id="status1" size="0">
+                                                <option th:value="Ditolak" th:text="Ditolak">
+                                                <option th:value="Disetujui" th:text="Disetujui">
+                                            </select>
+                                            <select th:if="${username} == 'Admin TU'" class="form-control" th:field="*{statusUpdate}" id="status2" size="0">
+                                                <option th:value="Diproses" th:text= "Diproses">
+                                                <option th:value="Selesai" th:text="Selesai">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                                    <button type="submit" class="mt-1 btn btn-primary">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script th:replace="fragments/fragment :: script"></script>
 </div>
 </body>
 </html>

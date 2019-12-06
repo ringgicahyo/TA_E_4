@@ -27,6 +27,25 @@
                         </div>
                     </div>
                 </div>
+                <div th:if="${hasil} == 'Berhasil ubah'" class="alert alert-success">
+                    <span th:text="'Status pengajuan surat berhasil disetujui. '"></span>
+                    <br>
+                </div>
+                <div th:if="${hasil} == 'Gagal ubah'" class="alert alert-danger">
+                    <span th:text="'Status pengajuan surat gagal disetujui. '"></span>
+                    <br>
+                </div>
+                <div th:if="${hasil} == 'Delete'" class="alert alert-success">
+                    <span th:text="'Pengajuan Surat berhasil dihapus. '"></span>
+                </div>
+                <div th:if="${hasil} == 'Fail Delete'" class="alert alert-danger">
+                    <span th:text="'Pengajuan Surat gagal dihapus. '"></span>
+                    <br>
+                </div>
+                <div th:if="${hasil} == 'Berhasil tambah'" class="alert alert-success">
+                    <span th:text="'Pengajuan Surat berhasil dilakukan. '"></span>
+                    <br>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="main-card mb-3 card">
@@ -58,22 +77,21 @@
                                         <td class="text-center" th:text="${pengajuanSurat.status}"></td>
                                         <div class="inline-buttons">
                                             <td class="text-center" >
-<!--                                    <a th:href= "@{/daftar-pengajuan-surat}">-->
-<!--                                        <button class="btn btn-sm btn-primary">Detail</button>-->
-<!--                                    </a>-->
-                                                <a th:if="${username} == 'Kepala Sekolah'" th:href= "@{'/pengajuan-surat/ubah/'
+                                                <a th:if="${username} == 'Kepala Sekolah'and ${pengajuanSurat.status} == 'Menunggu Persetujuan'
+                                                    " th:href= "@{'/pengajuan-surat/ubah/'
                                                     + ${#httpServletRequest.remoteUser} + @{'/'} + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>ubah</button>
+                                                    <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Ubah</button>
                                                 </a>
-                                                <a th:if="${username} == 'Admin TU' and ${pengajuanSurat.status} == 'Disetujui'"
+                                                <a th:if="${username} == 'Admin TU' and (${pengajuanSurat.status} == 'Disetujui' or ${pengajuanSurat.status} == 'Diproses')"
                                                    th:href= "@{'/pengajuan-surat/ubah/'+
                                                     ${#httpServletRequest.remoteUser} + @{'/'} + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>ubah</button>
+                                                    <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Ubah</button>
                                                 </a>
-                                                <a th:if="${username} != 'Admin TU' and (${pengajuanSurat.status} == 'Selesai' or
-                                                    ${pengajuanSurat.status} == 'Menunggu Persetujuan')"
-                                                   th:href="@{'/pengajuan-surat/hapus/' + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>hapus</button>
+                                                <a th:if="((${username} != 'Kepala Sekolah' ) and
+                                                   (${pengajuanSurat.status} == 'Selesai' or
+                                                   ${pengajuanSurat.status} == 'Menunggu Persetujuan') and (${pengajuanSurat.user.username} == ${#httpServletRequest.remoteUser}))"
+                                                   th:href="@{'/pengajuan-surat/hapus/'+ ${#httpServletRequest.remoteUser} + @{'/'} + ${pengajuanSurat.id}}">
+                                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
                                                 </a>
                                             </td>
                                         </div>
@@ -82,8 +100,8 @@
                                 </table>
                             </div>
                             <div class="d-block text-center card-footer">
-                                <form th:action="@{/lowongan/tambah}" method="GET">
-                                    <button class="btn-wide btn btn-success">Tambah</button>
+                                <form th:action="@{/pengajuan-surat/tambah/}" method="GET">
+                                    <button class="btn-wide btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
                                 </form>
                             </div>
                         </div>
@@ -94,7 +112,5 @@
     </div>
     <script th:replace="fragments/fragment :: script"></script>
 </div>
-
 </body>
-
 </html>
