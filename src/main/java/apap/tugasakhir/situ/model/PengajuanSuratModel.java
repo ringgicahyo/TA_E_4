@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="pengajuanSurat")
@@ -54,7 +55,13 @@ public class PengajuanSuratModel {
     private String statusUpdate;
 
     @Transient
-    private String usernameUser;
+    private String uuid;
+
+    @Transient
+    private String username;
+
+    @Transient
+    private String password;
 
     public PengajuanSuratModel() {
     }
@@ -139,7 +146,15 @@ public class PengajuanSuratModel {
         this.statusUpdate = statusUpdate;
     }
 
-    public String getUsernameUser() { return usernameUser; }
+    public String getUuid() {return uuid; }
 
-    public void setUsernameUser(String usernameUser) { this.usernameUser = usernameUser; }
+    public void setUuid(String uuid) { this.uuid = uuid; }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password;}
+
+    public void setPassword(String password) { this.password = password; }
 }
