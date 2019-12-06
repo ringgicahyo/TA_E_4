@@ -101,10 +101,6 @@ public class PageController {
         }
         allJenisSuratAmountFinal = allJenisSuratAmountFinal.substring(0,allJenisSuratAmountFinal.length()-1);
 
-        System.out.println(allJenisSuratFinal);
-        System.out.println(allJenisSuratAmountFinal);
-        System.out.println(colorsSuratFinal);
-
         // Add all String to model.
         model.addAttribute("jenisSurat", allJenisSuratFinal);
         model.addAttribute("amountJenisSurat", allJenisSuratAmountFinal);

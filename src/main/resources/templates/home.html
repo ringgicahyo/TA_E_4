@@ -70,9 +70,6 @@
         var labels = document.getElementById("all-jenis-lowongan").innerHTML.split(',');
         var data = JSON.parse("[" + document.getElementById("all-jenis-lowongan-amount").innerHTML + "]");
         var colors = document.getElementById("colors-lowongan").innerHTML.split(',');
-        console.log(labels);
-        console.log(data);
-        console.log(colors);
 
         var ctx = document.getElementById('lowongan-chart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -104,9 +101,6 @@
         var labels = document.getElementById("all-jenis-surat").innerHTML.split(',');
         var data = JSON.parse("[" + document.getElementById("all-jenis-surat-amount").innerHTML + "]");
         var colors = document.getElementById("colors-surat").innerHTML.split(',');
-        console.log(labels);
-        console.log(data);
-        console.log(colors);
 
         var ctx = document.getElementById('surat-chart').getContext('2d');
         var chart = new Chart(ctx, {
