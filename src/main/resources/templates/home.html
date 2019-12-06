@@ -15,8 +15,124 @@
     <div class="app-main">
         <div th:replace="fragments/fragment :: navbar-sidebar"></div>
         <!-- CONTENT GOES HERE -->
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                </i>
+                            </div>
+                            <div>Home Dashboard
+                                <div class="page-title-subheading">Overview terhadap lowongan dan pengajuan surat melalui Smart SI-TU.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-6" style="margin: auto;">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dashboard Lowongan</h5>
+                                        <canvas id="lowongan-chart" width="800" height="450"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" style="margin: auto;">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dashboard Pengajuan Surat</h5>
+                                        <canvas id="surat-chart" width="800" height="450"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <p id="all-jenis-lowongan" style="display: none;" th:text="${jenisLowongan}"></p>
+    <p id="all-jenis-lowongan-amount" style="display: none;" th:text="${amountJenisLowongan}"></p>
+    <p id="colors-lowongan" style="display: none;" th:text="${colorsLowongan}"></p>
+
+    <p id="all-jenis-surat" style="display: none;" th:text="${jenisSurat}"></p>
+    <p id="all-jenis-surat-amount" style="display: none;" th:text="${amountJenisSurat}"></p>
+    <p id="colors-surat" style="display: none;" th:text="${colorsSurat}"></p>
     <script th:replace="fragments/fragment :: script"></script>
+    <script>
+        var labels = document.getElementById("all-jenis-lowongan").innerHTML.split(',');
+        var data = JSON.parse("[" + document.getElementById("all-jenis-lowongan-amount").innerHTML + "]");
+        var colors = document.getElementById("colors-lowongan").innerHTML.split(',');
+        console.log(labels);
+        console.log(data);
+        console.log(colors);
+
+        var ctx = document.getElementById('lowongan-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+
+            type: 'doughnut',
+
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                      label: "Population (millions)",
+                      backgroundColor: colors,
+                      data: data
+                    }
+                ]
+            },
+
+            // Configuration options go here
+            options: {
+                title: {
+                    display: true,
+                    text: 'Statistik Lowongan'
+                }
+             }
+        });
+    </script>
+
+    <script>
+        var labels = document.getElementById("all-jenis-surat").innerHTML.split(',');
+        var data = JSON.parse("[" + document.getElementById("all-jenis-surat-amount").innerHTML + "]");
+        var colors = document.getElementById("colors-surat").innerHTML.split(',');
+        console.log(labels);
+        console.log(data);
+        console.log(colors);
+
+        var ctx = document.getElementById('surat-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+
+            type: 'doughnut',
+
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                      label: "Population (millions)",
+                      backgroundColor: colors,
+                      data: data
+                    }
+                ]
+            },
+
+            // Configuration options go here
+            options: {
+                title: {
+                    display: true,
+                    text: 'Statistik Pengajuan Surat'
+                }
+             }
+        });
+    </script>
 </div>
 </body>
 </html>
