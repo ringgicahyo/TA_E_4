@@ -42,44 +42,52 @@
                             <span th:text="${message}"></span>
                             <br>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body"><h5 class="card-title">Form Tambah Lowongan</h5>
-                                        <form class="form needs-validation" role="form" th:action="@{'/lowongan/tambah/' + ${#httpServletRequest.remoteUser}}" th:object="${lowongan}" method="POST">
-                                            <div class="position-relative form-group">
-                                                <label for="judulLowongan" class="">Judul</label>
-                                                <input name="judul" id="judulLowongan" placeholder="Judul Lowongan" type="text" class="form-control" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="tanggalDibuka" class="">Tanggal Dibuka</label>
-                                                <input name="tanggalDibuka" id="tanggalDibuka" placeholder="" type="date" class="form-control" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="tanggalDitutup" class="">Tanggal Ditutup</label>
-                                                <input name="tanggalDitutup" id="tanggalDitutup" placeholder="" type="date" class="form-control" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="keterangan" class="">Keterangan</label>
-                                                <input name="keterangan" id="keterangan" placeholder="Keterangan" type="text" class="form-control" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="jumlah" class="">Jumlah</label>
-                                                <input name="jumlah" id="jumlah" placeholder="" type="number" class="form-control" required>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="jenisLowongan" class="">Jenis Lowongan</label>
-                                                <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control" size="0" required>
-                                                    <option th:value="0" selected> -- Pilih Jenis Lowongan -- </option>
-                                                    <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
-                                            <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
-                                        </form>
+                        <div class="main-card mb-3 card">
+                            <div class="card-body"><h5 class="card-title">Form Tambah Lowongan</h5>
+                                <form class="form needs-validation" role="form" th:action="@{'/lowongan/tambah/' + ${#httpServletRequest.remoteUser}}" th:object="${lowongan}" method="POST">
+                                    <div class="position-relative row form-group">
+                                        <label for="judulLowongan" class="col-sm-2 col-form-label">Judul</label>
+                                        <div class="col-sm-10">
+                                            <input name="judul" id="judulLowongan" placeholder="Judul Lowongan" type="text" class="form-control" required>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="tanggalDibuka" class="col-sm-2 col-form-label">Tanggal Dibuka</label>
+                                        <div class="col-sm-10">
+                                            <input name="tanggalDibuka" id="tanggalDibuka" placeholder="" type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="tanggalDitutup" class="col-sm-2 col-form-label">Tanggal Ditutup</label>
+                                        <div class="col-sm-10">
+                                            <input name="tanggalDitutup" id="tanggalDitutup" placeholder="" type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                                        <div class="col-sm-10">
+                                            <input name="keterangan" id="keterangan" placeholder="Keterangan" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
+                                        <div class="col-sm-10">
+                                            <input name="jumlah" id="jumlah" placeholder="" type="number" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative row form-group">
+                                        <label for="jenisLowongan" class="col-sm-2 col-form-label">Jenis Lowongan</label>
+                                        <div class="col-sm-10">
+                                            <select th:field="*{jenisLowongan}" id="jenisLowongan" class="form-control" size="0" required>
+                                                <option th:value="0" selected> -- Pilih Jenis Lowongan -- </option>
+                                                <option th:each="jenisLowongan : ${listJenisLowongan}" th:value="${jenisLowongan.id}" th:text="${jenisLowongan.nama}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="reset" class="mt-1 btn btn-secondary" value="Cancel">
+                                    <button type="submit" class="mt-1 btn btn-primary">Tambah</button>
+                                </form>
                             </div>
                         </div>
                     </div>

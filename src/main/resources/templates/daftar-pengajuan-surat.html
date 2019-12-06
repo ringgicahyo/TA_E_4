@@ -63,17 +63,17 @@
 <!--                                    </a>-->
                                                 <a th:if="${username} == 'Kepala Sekolah'" th:href= "@{'/pengajuan-surat/ubah/'
                                                     + ${#httpServletRequest.remoteUser} + @{'/'} + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>Ubah</button>
+                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>ubah</button>
                                                 </a>
                                                 <a th:if="${username} == 'Admin TU' and ${pengajuanSurat.status} == 'Disetujui'"
                                                    th:href= "@{'/pengajuan-surat/ubah/'+
                                                     ${#httpServletRequest.remoteUser} + @{'/'} + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>Ubah</button>
+                                                    <button class="btn btn-sm btn-dark"><i class="fa fa-edit"></i>ubah</button>
                                                 </a>
                                                 <a th:if="${username} != 'Admin TU' and (${pengajuanSurat.status} == 'Selesai' or
                                                     ${pengajuanSurat.status} == 'Menunggu Persetujuan')"
                                                    th:href="@{'/pengajuan-surat/hapus/' + ${pengajuanSurat.id}}">
-                                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Hapus</button>
+                                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>hapus</button>
                                                 </a>
                                             </td>
                                         </div>
