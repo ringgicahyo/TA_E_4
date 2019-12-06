@@ -6,7 +6,6 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <object th:include="fragments/fragment :: meta" th:remove="tag"></object>
 </head>
-
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div th:replace="fragments/fragment :: navbar-header"></div>
@@ -39,11 +38,6 @@
                 <!--        </ul>-->
                 <div class="tab-content">
                     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-                        <div th:if="${status != null}">
-                            <span th:if="${!status}" th:text="${message}" class="alert alert-danger"></span>
-                            <span th:if="${status}" th:text="${message}" class="alert alert-success"></span>
-                            <br>
-                        </div>
                         <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <h5 class="card-title">Form Update Status Pengajuan Surat</h5>
