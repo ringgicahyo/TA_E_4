@@ -1,7 +1,7 @@
 # Tugas Akhir - APAP-C
 
 # TA_E_4 - Sistem Informasi Tata Usaha (SI-TU) 
-Tata Usaha (TU) SMART menyediakan berbagai layanan. Mulai dari pengurusan surat hingga hingga membuka lowongan tenaga pendukung. Pelayanan dilakukan baik untuk sivitas sendiri maupun masyarakat umum.Untuk mendukung fungsi TU maka dibutuhkan sebuah sistem informasi yang dapat meningkatkan proses bisnis menjadi lebih cepat, tepat, transparan, dan akuntabel.
+Tata Usaha (TU) SMART menyediakan berbagai layanan. Mulai dari pengurusan surat hingga hingga membuka lowongan tenaga pendukung. Pelayanan dilakukan baik untuk sivitas sendiri maupun masyarakat umum. Untuk mendukung fungsi TU maka dibutuhkan sebuah sistem informasi yang dapat meningkatkan proses bisnis menjadi lebih cepat, tepat, transparan, dan akuntabel.
 
 URL GitHub Repository: https://github.com/ringgicahyo/TA_E_4
 
