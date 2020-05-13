@@ -64,18 +64,4 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(UserModel user) {
         userDb.delete(user);
     }
-
-// import org.springframework.stereotype.Service;
-
-// import javax.transaction.Transactional;
-
-// @Transactional
-// @Service
-// public class UserServiceImpl implements UserService{
-//     @Autowired
-//     private UserDb userDb;
-//     @Override
-//     public UserModel getUserById(Integer id) {
-//         return userDb.getById(id);
-//     }
 }
